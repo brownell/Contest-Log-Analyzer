@@ -40,7 +40,8 @@ ENV PYTHONPATH /app
 WORKDIR /app
 
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+
+RUN pip install --no-cache-dir --default-timeout=300 --retries=5 -r requirements.txt
 
 # --- INFRASTRUCTURE: Asset Provisioning ---
 # Create directory and download html2canvas.min.js
