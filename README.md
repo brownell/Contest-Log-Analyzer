@@ -20,6 +20,9 @@ Most logging software is designed for the heat of battle—getting QSOs into the
 
 ## Key Features
 
+### Flexible Analysis
+Analyze a single log to understand your performance metrics, or compare 2-3 logs for head-to-head competitive analysis. The system automatically adapts reports based on the number of logs provided.
+
 ### Heuristic Analysis
 Cabrillo logs don't record whether you were "Running" (Calling CQ) or "Search & Pouncing" (Hunting). CLA uses a sophisticated algorithm to infer your operating mode based on time and frequency deltas, creating insights that don't exist in the raw file.
 
@@ -97,7 +100,9 @@ python main_cli.py --report plot MyLog.log CompetitorLog.log
 python main_cli.py --report chart MyLog.log CompetitorLog.log
 ```
 
-**Note**: You must set two environment variables before running:
+**Note**: The analyzer supports 1, 2, or 3 logs. Single-log analysis provides detailed performance metrics. Multi-log analysis enables head-to-head comparison and identifies unique vs. common QSOs.
+
+**Environment Variables**: You must set two environment variables before running:
 - `CONTEST_INPUT_DIR`: Root directory containing your 'Logs' and 'data' subdirectories
 - `CONTEST_REPORTS_DIR`: Output directory for generated reports (must be local, not cloud-synced)
 

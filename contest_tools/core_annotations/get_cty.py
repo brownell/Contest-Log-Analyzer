@@ -62,6 +62,9 @@ class CtyLookup:
         self.filename = cty_dat_path
         self.dxccprefixes: Dict[str, CtyLookup.CtyInfo] = {}
         self.waeprefixes: Dict[str, CtyLookup.CtyInfo] = {}
+        # Cache for callsign lookups to avoid repeated processing
+        self._lookup_cache: Dict[Tuple[str, bool], CtyInfo] = {}
+        self._full_lookup_cache: Dict[str, FullCtyInfo] = {}
 
         if not os.path.exists(self.filename):
             raise FileNotFoundError(f"CTY.DAT file not found: {self.filename}")
@@ -186,7 +189,12 @@ class CtyLookup:
     def get_cty_DXCC_WAE(self, callsign: str) -> FullCtyInfo:
         """
         Primary entry point. Performs two lookups and merges the results.
+        Uses caching to avoid repeated lookups of the same callsign.
         """
+        # Check cache first
+        if callsign in self._full_lookup_cache:
+            return self._full_lookup_cache[callsign]
+        
         dxcc_res_obj = self.get_cty(callsign, wae=False)
         wae_res_obj = self.get_cty(callsign, wae=True)
 
@@ -220,22 +228,42 @@ class CtyLookup:
                 wae_name = wae_res_obj.name
                 wae_pfx = wae_res_obj.DXCC
         
-        return self.FullCtyInfo(dxcc_name, dxcc_pfx, cq, itu, cont, lat, lon, tz, wae_name, wae_pfx, portableid)
+        result = self.FullCtyInfo(dxcc_name, dxcc_pfx, cq, itu, cont, lat, lon, tz, wae_name, wae_pfx, portableid)
+        # Cache the result
+        self._full_lookup_cache[callsign] = result
+        return result
 
     def get_cty(self, callsign: str, wae: bool = True) -> CtyInfo:
         """
         Core logic function that implements the ordered lookup algorithm.
+        Uses caching to avoid repeated lookups of the same callsign.
         """
+        # Check cache first (cache key is (callsign, wae))
+        cache_key = (callsign, wae)
+        if cache_key in self._lookup_cache:
+            return self._lookup_cache[cache_key]
+        
         processed_call = self._preprocess_callsign(callsign)
         result = self._check_exact_match(processed_call, wae)
-        if result: return result
+        if result:
+            self._lookup_cache[cache_key] = result
+            return result
         result = self._check_special_cases(processed_call)
-        if result: return result
+        if result:
+            self._lookup_cache[cache_key] = result
+            return result
         if '/' in processed_call:
             result = self._handle_portable_call(processed_call, wae)
-            if result: return result
+            if result:
+                self._lookup_cache[cache_key] = result
+                return result
         result = self._find_longest_prefix(processed_call, wae)
-        if result: return result
+        if result:
+            self._lookup_cache[cache_key] = result
+            return result
+        
+        # Cache unknown results too
+        self._lookup_cache[cache_key] = self.UNKNOWN_ENTITY
         return self.UNKNOWN_ENTITY
 
     def _preprocess_callsign(self, call: str) -> str:

@@ -48,10 +48,12 @@ from ..styles.plotly_style_manager import PlotlyStyleManager
 class BaseRateReport(ContestReport):
     """
     Base class for generating rate comparison plots.
+    Supports both single-log and multi-log scenarios.
     Subclasses must define metric_key and metric_label.
     """
     report_type: str = "plot"
     supports_multi = True
+    supports_single = True
     
     # Defaults to be overridden
     metric_key: str = "qsos"
@@ -131,9 +133,15 @@ class BaseRateReport(ContestReport):
         debug_data_flag = kwargs.get("debug_data", False)
         metric_name = self._get_metric_name()
         
-        # --- DAL Integration ---
-        agg = TimeSeriesAggregator(logs)
-        ts_data = agg.get_time_series_data(band_filter=band_filter, mode_filter=mode_filter)
+        # --- Phase 1 Performance Optimization: Use Cached Aggregator Data ---
+        get_cached_ts_data = kwargs.get('_get_cached_ts_data')
+        if get_cached_ts_data:
+            # Use cached time series data (avoids recreating aggregator and recomputing)
+            ts_data = get_cached_ts_data(band_filter=band_filter if band_filter != 'All' else None, mode_filter=mode_filter)
+        else:
+            # Fallback to old behavior for backward compatibility
+            agg = TimeSeriesAggregator(logs)
+            ts_data = agg.get_time_series_data(band_filter=band_filter if band_filter != 'All' else None, mode_filter=mode_filter)
         time_bins = [pd.Timestamp(t) for t in ts_data['time_bins']]
 
         # Initialize Plotly Subplots

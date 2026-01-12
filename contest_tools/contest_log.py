@@ -5,8 +5,8 @@
 #          data cleaning, and calculation of various contest metrics.
 #
 # Author: Gemini AI
-# Date: 2025-10-10
-# Version: 0.91.12-Beta
+# Date: 2026-01-07
+# Version: 0.160.0-Beta
 #
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
@@ -18,6 +18,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 # --- Revision History ---
+# [0.160.0-Beta] - 2026-01-07
+# - Added performance profiling instrumentation when CLA_PROFILE=1.
 # [0.91.12-Beta] - 2025-10-10
 # - Fixed bug where the contest name from a file header would overwrite
 #   the authoritative name from a CLI override (e.g., --wrtc).
@@ -69,6 +71,7 @@ import logging
 from .cabrillo_parser import parse_cabrillo_file
 from .contest_definitions import ContestDefinition
 from .core_annotations import CtyLookup, process_dataframe_for_cty_data, process_contest_log_for_run_s_p, BandAllocator
+from .utils.profiler import profile_section, ProfileContext
 
 class ContestLog:
     """
@@ -103,7 +106,8 @@ class ContestLog:
                 return band_name
         return 'Invalid'
 
-    def __init__(self, contest_name: str, cabrillo_filepath: str, root_input_dir: str, cty_dat_path: str):
+    def __init__(self, contest_name: str, cabrillo_filepath: str, root_input_dir: str, cty_dat_path: str, 
+                 shared_cty_lookup=None, shared_band_allocator=None):
         self.contest_name = contest_name
         self.qsos_df: pd.DataFrame = pd.DataFrame()
         self.qtcs_df: pd.DataFrame = pd.DataFrame()
@@ -117,12 +121,14 @@ class ContestLog:
     
         self._my_location_type: Optional[str] = None # W/VE or DX
         self._log_manager_ref = None
-    
+        
+        # Performance optimization: Use shared instances if provided to avoid reloading from disk
+        self._shared_cty_lookup = shared_cty_lookup
+        self.band_allocator = shared_band_allocator if shared_band_allocator else BandAllocator(root_input_dir)
         
         self.root_input_dir = root_input_dir
         if root_input_dir is None:
             raise ValueError("ContestLog requires a root_input_dir.")
-        self.band_allocator = BandAllocator(root_input_dir)
 
         try:
             self.contest_definition = ContestDefinition.from_json(contest_name)
@@ -224,6 +230,7 @@ class ContestLog:
             
         return df_filtered
 
+    @profile_section("Cabrillo Data Ingestion")
     def _ingest_cabrillo_data(self, cabrillo_filepath: str):
         custom_parser_name = self.contest_definition.custom_parser_module
         if custom_parser_name:
@@ -418,7 +425,8 @@ class ContestLog:
         if is_asymmetric:
             my_call = self.metadata.get('MyCall')
             if my_call:
-                cty_lookup = CtyLookup(cty_dat_path=self.cty_dat_path)
+                # Use shared CTY lookup if available (performance optimization)
+                cty_lookup = self._shared_cty_lookup if self._shared_cty_lookup else CtyLookup(cty_dat_path=self.cty_dat_path)
                 info = cty_lookup.get_cty_DXCC_WAE(my_call)._asdict()
                 
                 self._my_location_type = "W/VE" if info['DXCCName'] in ["United States", "Canada"] else "DX"
@@ -444,7 +452,8 @@ class ContestLog:
 
         try:
             logging.info("Applying Universal DXCC/Zone lookup...")
-            self.qsos_df = process_dataframe_for_cty_data(self.qsos_df, self.cty_dat_path)
+            # Use shared CTY lookup if available (performance optimization)
+            self.qsos_df = process_dataframe_for_cty_data(self.qsos_df, self.cty_dat_path, shared_cty_lookup=self._shared_cty_lookup)
             logging.info("Universal DXCC/Zone lookup complete.")
         except Exception as e:
             logging.error(f"Error during Universal DXCC/Zone lookup: {e}. Skipping.")

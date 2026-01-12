@@ -265,17 +265,29 @@ This project is licensed under the **Mozilla Public License, v. 2.0**.
 ## 6. The Web Dashboard
 
 The Contest Log Analytics now features a "Stateless" Web Interface designed for ease of use.
+
 ### Launching the App
 1. Ensure Docker is running.
 2. Navigate to the project root.
 3. Run: `docker-compose up --build`
 4. Open your browser to `http://localhost:8000`.
+
+### Upload Options
+The web dashboard supports flexible log analysis:
+* **Single-Log Analysis:** Upload only Log 1 to analyze your performance, rates, and multipliers in detail.
+* **Comparison Analysis (2-3 Logs):** Upload 2 or 3 logs to enable head-to-head comparison with unique vs. common QSO breakdowns.
+
 ### Identity Agnostic Workflow
 The analyzer does not know "who you are." It simply compares logs.
-* **Log 1:** Upload your primary log here (The "Hero").
-* **Log 2 & 3:** Upload competitor logs here (The "Villains").
+* **Log 1:** Upload your primary log here (The "Hero"). This slot is required.
+* **Log 2 & 3:** Upload competitor logs here (The "Villains"). These slots are optional.
+
 ### The Dashboard
 Once analyzed, you are presented with a "Strategy Board":
 * **The Scoreboard:** High-level metrics including Run % and total score.
 * **The Triptych:** Three paths for deeper analysis (Animation, QSO Reports, Multiplier Reports).
 * **Raw Data:** A button to download the full set of generated reports as a ZIP file.
+
+### Single vs. Multi-Log Features
+* **Single-Log Reports:** Score summaries, rate sheets, hourly breakdowns, multiplier analysis, and performance metrics.
+* **Multi-Log Reports:** All single-log features plus cumulative difference plots, QSO comparison charts, missed multiplier analysis, and head-to-head rate comparisons.

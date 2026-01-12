@@ -78,8 +78,15 @@ class Report(ContestReport):
         is_single_band = len(bands) == 1
         
         # Data Aggregation
-        agg = TimeSeriesAggregator(self.logs)
-        ts_data = agg.get_time_series_data()
+        # --- Phase 1 Performance Optimization: Use Cached Aggregator Data ---
+        get_cached_ts_data = kwargs.get('_get_cached_ts_data')
+        if get_cached_ts_data:
+            # Use cached time series data (avoids recreating aggregator and recomputing)
+            ts_data = get_cached_ts_data()
+        else:
+            # Fallback to old behavior for backward compatibility
+            agg = TimeSeriesAggregator(self.logs)
+            ts_data = agg.get_time_series_data()
         time_bins = ts_data['time_bins']
         
         # Determine available modes globally across all logs

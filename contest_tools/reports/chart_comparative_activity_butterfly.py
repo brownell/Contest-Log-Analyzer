@@ -103,8 +103,15 @@ class Report(ContestReport):
         call2 = self.logs[1].get_metadata().get('MyCall', 'LOG2')
 
         # 1. Fetch Data
-        aggregator = MatrixAggregator(self.logs)
-        data = aggregator.get_stacked_matrix_data(bin_size='60min')
+        # --- Phase 1 Performance Optimization: Use Cached Aggregator Data ---
+        get_cached_stacked_matrix_data = kwargs.get('_get_cached_stacked_matrix_data')
+        if get_cached_stacked_matrix_data:
+            # Use cached stacked matrix data (avoids recreating aggregator and recomputing)
+            data = get_cached_stacked_matrix_data(bin_size='60min', mode_filter=None)
+        else:
+            # Fallback to old behavior for backward compatibility
+            aggregator = MatrixAggregator(self.logs)
+            data = aggregator.get_stacked_matrix_data(bin_size='60min')
         
         bands = data.get('bands', [])
         time_bins = data.get('time_bins', [])

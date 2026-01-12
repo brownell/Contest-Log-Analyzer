@@ -31,9 +31,14 @@ from .get_cty import CtyLookup
 from .run_s_p import process_contest_log_for_run_s_p
 from ._band_allocator import BandAllocator
 
-def process_dataframe_for_cty_data(df: pd.DataFrame, cty_dat_path: str) -> pd.DataFrame:
+def process_dataframe_for_cty_data(df: pd.DataFrame, cty_dat_path: str, shared_cty_lookup=None) -> pd.DataFrame:
     """
     Applies universal DXCC and WAE lookup to a DataFrame of QSO records.
+    
+    Args:
+        df: DataFrame containing QSO records with a 'Call' column
+        cty_dat_path: Path to the CTY.DAT file (used if shared_cty_lookup is not provided)
+        shared_cty_lookup: Optional shared CtyLookup instance (performance optimization)
     """
     if df.empty:
         return df
@@ -41,16 +46,19 @@ def process_dataframe_for_cty_data(df: pd.DataFrame, cty_dat_path: str) -> pd.Da
     if 'Call' not in df.columns:
         raise KeyError("DataFrame must contain a 'Call' column for CTY data lookup.")
 
-    logging.info(f"Using country file for universal annotations: {cty_dat_path}")
-
     processed_df = df.copy()
     processed_df['Call'] = processed_df['Call'].fillna('').astype(str).str.strip().str.upper()
 
-    try:
-        cty_lookup_instance = CtyLookup(cty_dat_path=cty_dat_path)
-    except (FileNotFoundError, IOError) as e:
-        logging.critical(f"Fatal Error initializing CtyLookup for universal annotations: {e}")
-        raise
+    # Use shared instance if provided (performance optimization), otherwise create new one
+    if shared_cty_lookup is not None:
+        cty_lookup_instance = shared_cty_lookup
+    else:
+        logging.info(f"Using country file for universal annotations: {cty_dat_path}")
+        try:
+            cty_lookup_instance = CtyLookup(cty_dat_path=cty_dat_path)
+        except (FileNotFoundError, IOError) as e:
+            logging.critical(f"Fatal Error initializing CtyLookup for universal annotations: {e}")
+            raise
 
     temp_results = processed_df['Call'].apply(
         lambda call: cty_lookup_instance.get_cty_DXCC_WAE(call)._asdict()

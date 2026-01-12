@@ -140,9 +140,9 @@ __CODE_BLOCK__
 
 #### Step 3: Install Libraries with Conda
 With the `cla` environment active, use the following single command to install all required libraries from the recommended `conda-forge` channel.
-This includes `ffmpeg` for video creation and `plotly` for interactive charts.
+This includes `plotly` for interactive charts.
 __CODE_BLOCK__
-conda install -c conda-forge pandas numpy matplotlib seaborn imageio imageio-ffmpeg ffmpeg prettytable tabulate requests beautifulsoup4 plotly python-kaleido
+conda install -c conda-forge pandas numpy matplotlib seaborn imageio prettytable tabulate requests beautifulsoup4 plotly
 __CODE_BLOCK__
 
 #### Step 4: Set Up the Input and Output Directories

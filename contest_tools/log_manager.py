@@ -7,8 +7,8 @@
 #          analysis engine.
 #
 # Author: Gemini AI
-# Date: 2025-12-29
-# Version: 0.141.0-Beta
+# Date: 2026-01-07
+# Version: 0.160.0-Beta
 #
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
@@ -22,6 +22,8 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #
 # --- Revision History ---
+# [0.160.0-Beta] - 2026-01-07
+# - Added performance profiling instrumentation when CLA_PROFILE=1.
 # [0.141.0-Beta] - 2025-12-29
 # - Implemented strict, case-insensitive alphabetical sorting of logs in
 #   load_log_batch to ensure deterministic processing order.
@@ -77,6 +79,8 @@ import pandas as pd
 from typing import List, Optional, Set
 from .contest_log import ContestLog
 from .utils.cty_manager import CtyManager
+from .core_annotations import CtyLookup, BandAllocator
+from .utils.profiler import profile_section, ProfileContext
 import os
 import importlib
 from datetime import datetime
@@ -91,6 +95,7 @@ class LogManager:
         self.logs = []
         self.master_time_index = None
 
+    @profile_section("Log Batch Loading (Total)")
     def load_log_batch(self, log_filepaths: List[str], root_input_dir: str, cty_specifier: str, wrtc_year: int = None):
         """
         Performs validation on log files (duplicates, consistency, empty checks), selects a single
@@ -98,106 +103,116 @@ class LogManager:
         """
         # --- 1. Pre-flight Validation Phase ---
         if log_filepaths:
-            logging.info("Performing pre-flight validation on logs...")
-            header_data = []
-            seen_calls: Set[str] = set()
+            with ProfileContext("Pre-flight Validation"):
+                logging.info("Performing pre-flight validation on logs...")
+                header_data = []
+                seen_calls: Set[str] = set()
 
-            for path in log_filepaths:
-                call = self._get_callsign_from_header(path)
-                
-                # Check for duplicate callsigns
-                if call in seen_calls:
-                    raise ValueError(f"Duplicate log callsign '{call}' detected in cabrillo header of '{os.path.basename(path)}'. Each log must be from a unique station.")
-                seen_calls.add(call)
-
-                base_contest = self._get_contest_name_from_header(path)
-                if wrtc_year and base_contest == 'IARU-HF':
-                    effective_contest = f"WRTC-{wrtc_year}"
-                else:
-                    effective_contest = base_contest
-
-                date = self._get_first_qso_date_from_log(path)
-                if date is None:
-                    raise ValueError(f"Log file '{os.path.basename(path)}' contains no valid QSO records.")
-
-                # Minimal setup to resolve event ID
-                temp_log = ContestLog(contest_name=effective_contest, cabrillo_filepath=None, root_input_dir=root_input_dir, cty_dat_path=None)
-                temp_log.get_processed_data()['Datetime'] = pd.Series([date]) 
-                event_id = self._get_event_id(temp_log)
-                
-                header_data.append({'call': call, 'contest': effective_contest, 'date': date, 'event_id': event_id, 'filename': os.path.basename(path)})
-
-            # Consistency Checks
-            if len(header_data) > 1:
-                first = header_data[0]
-                first_year = first['date'].year
-
-                for other in header_data[1:]:
-                    # Contest Name (Includes Mode for single-mode contests)
-                    if other['contest'] != first['contest']:
-                        raise ValueError(f"Contest Mismatch: '{other['filename']}' is '{other['contest']}', but '{first['filename']}' is '{first['contest']}'.")
+                for path in log_filepaths:
+                    call = self._get_callsign_from_header(path)
                     
-                    # Year
-                    if other['date'].year != first_year:
-                        raise ValueError(f"Year Mismatch: '{other['filename']}' is from {other['date'].year}, but '{first['filename']}' is from {first_year}.")
+                    # Check for duplicate callsigns
+                    if call in seen_calls:
+                        raise ValueError(f"Duplicate log callsign '{call}' detected in cabrillo header of '{os.path.basename(path)}'. Each log must be from a unique station.")
+                    seen_calls.add(call)
 
-                    # Event ID (e.g. NAQP Jan vs Aug)
-                    if other['event_id'] != first['event_id']:
-                        raise ValueError(f"Event Mismatch: '{other['filename']}' is event '{other['event_id']}', but '{first['filename']}' is '{first['event_id']}'.")
+                    base_contest = self._get_contest_name_from_header(path)
+                    if wrtc_year and base_contest == 'IARU-HF':
+                        effective_contest = f"WRTC-{wrtc_year}"
+                    else:
+                        effective_contest = base_contest
 
-            logging.info("Validation successful.")
+                    date = self._get_first_qso_date_from_log(path)
+                    if date is None:
+                        raise ValueError(f"Log file '{os.path.basename(path)}' contains no valid QSO records.")
+
+                    # Minimal setup to resolve event ID
+                    temp_log = ContestLog(contest_name=effective_contest, cabrillo_filepath=None, root_input_dir=root_input_dir, cty_dat_path=None)
+                    temp_log.get_processed_data()['Datetime'] = pd.Series([date]) 
+                    event_id = self._get_event_id(temp_log)
+                    
+                    header_data.append({'call': call, 'contest': effective_contest, 'date': date, 'event_id': event_id, 'filename': os.path.basename(path)})
+
+                # Consistency Checks
+                if len(header_data) > 1:
+                    first = header_data[0]
+                    first_year = first['date'].year
+
+                    for other in header_data[1:]:
+                        # Contest Name (Includes Mode for single-mode contests)
+                        if other['contest'] != first['contest']:
+                            raise ValueError(f"Contest Mismatch: '{other['filename']}' is '{other['contest']}', but '{first['filename']}' is '{first['contest']}'.")
+                        
+                        # Year
+                        if other['date'].year != first_year:
+                            raise ValueError(f"Year Mismatch: '{other['filename']}' is from {other['date'].year}, but '{first['filename']}' is from {first_year}.")
+
+                        # Event ID (e.g. NAQP Jan vs Aug)
+                        if other['event_id'] != first['event_id']:
+                            raise ValueError(f"Event Mismatch: '{other['filename']}' is event '{other['event_id']}', but '{first['filename']}' is '{first['event_id']}'.")
+
+                logging.info("Validation successful.")
 
         # --- 2. Single CTY File Selection ---
-        logging.info("Resolving CTY file for batch...")
-        cty_manager = CtyManager(root_input_dir)
-        
-        if cty_specifier in ['before', 'after']:
-            all_dates = [self._get_first_qso_date_from_log(path) for path in log_filepaths]
-            # Filter None to be safe (though validation guarantees validity)
-            valid_dates = [d for d in all_dates if d is not None]
+        with ProfileContext("CTY File Resolution"):
+            logging.info("Resolving CTY file for batch...")
+            cty_manager = CtyManager(root_input_dir)
             
-            if not valid_dates:
-                target_date = pd.Timestamp.now(tz='UTC')
+            if cty_specifier in ['before', 'after']:
+                all_dates = [self._get_first_qso_date_from_log(path) for path in log_filepaths]
+                # Filter None to be safe (though validation guarantees validity)
+                valid_dates = [d for d in all_dates if d is not None]
+                
+                if not valid_dates:
+                    target_date = pd.Timestamp.now(tz='UTC')
+                else:
+                    target_date = min(valid_dates) if cty_specifier == 'before' else max(valid_dates)
             else:
-                target_date = min(valid_dates) if cty_specifier == 'before' else max(valid_dates)
-        else:
-            # If a specific filename is given, we need a date for the sync check.
-            # We'll just use the first log's date as it's a reasonable proxy.
-            target_date = self._get_first_qso_date_from_log(log_filepaths[0]) or pd.Timestamp.now(tz='UTC')
+                # If a specific filename is given, we need a date for the sync check.
+                # We'll just use the first log's date as it's a reasonable proxy.
+                target_date = self._get_first_qso_date_from_log(log_filepaths[0]) or pd.Timestamp.now(tz='UTC')
 
-        # Conditionally update the index based on the determined target date
-        cty_manager.sync_index(contest_date=target_date)
+            # Conditionally update the index based on the determined target date
+            cty_manager.sync_index(contest_date=target_date)
 
-        if cty_specifier in ['before', 'after']:
-            cty_dat_path, cty_file_info = cty_manager.find_cty_file_by_date(target_date, cty_specifier)
-        else:
-            cty_dat_path, cty_file_info = cty_manager.find_cty_file_by_name(cty_specifier)
-        
-        if not cty_dat_path:
-            raise FileNotFoundError(f"Could not find a suitable CTY.DAT file for specifier '{cty_specifier}'.")
-        logging.info(f"Using CTY file for all logs: {os.path.basename(cty_dat_path)} (Date: {cty_file_info.get('date')})")
+            if cty_specifier in ['before', 'after']:
+                cty_dat_path, cty_file_info = cty_manager.find_cty_file_by_date(target_date, cty_specifier)
+            else:
+                cty_dat_path, cty_file_info = cty_manager.find_cty_file_by_name(cty_specifier)
+            
+            if not cty_dat_path:
+                raise FileNotFoundError(f"Could not find a suitable CTY.DAT file for specifier '{cty_specifier}'.")
+            logging.info(f"Using CTY file for all logs: {os.path.basename(cty_dat_path)} (Date: {cty_file_info.get('date')})")
+
+        # --- 2.5. Create Shared Instances (Performance Optimization) ---
+        # Create shared CTY lookup and BandAllocator instances to avoid reloading from disk for each log
+        shared_cty_lookup = CtyLookup(cty_dat_path=cty_dat_path)
+        shared_band_allocator = BandAllocator(root_input_dir)
 
         # --- 3. Full Log Loading Phase ---
         for path in log_filepaths:
             try:
-                logging.info(f"Loading log: {path}...")
-                base_contest_name = self._get_contest_name_from_header(path)
-                if not base_contest_name:
-                    logging.warning(f"  - Could not determine contest name from file header. Skipping.")
-                    continue
+                with ProfileContext(f"Individual Log Loading - {os.path.basename(path)}"):
+                    logging.info(f"Loading log: {path}...")
+                    base_contest_name = self._get_contest_name_from_header(path)
+                    if not base_contest_name:
+                        logging.warning(f"  - Could not determine contest name from file header. Skipping.")
+                        continue
 
-                if wrtc_year and base_contest_name == 'IARU-HF':
-                    contest_name = f"WRTC-{wrtc_year}"
-                    logging.info(f"  --wrtc flag is set. Scoring as '{contest_name}'.")
-                else:
-                    contest_name = base_contest_name
+                    if wrtc_year and base_contest_name == 'IARU-HF':
+                        contest_name = f"WRTC-{wrtc_year}"
+                        logging.info(f"  --wrtc flag is set. Scoring as '{contest_name}'.")
+                    else:
+                        contest_name = base_contest_name
 
-                log = ContestLog(contest_name=contest_name, cabrillo_filepath=path, root_input_dir=root_input_dir, cty_dat_path=cty_dat_path)
-                setattr(log, '_log_manager_ref', self)
-                log.apply_annotations()
-                
-                self.logs.append(log)
-                logging.info(f"Successfully loaded and processed log for {log.get_metadata().get('MyCall', 'Unknown')}.")
+                    log = ContestLog(contest_name=contest_name, cabrillo_filepath=path, root_input_dir=root_input_dir, 
+                                   cty_dat_path=cty_dat_path, shared_cty_lookup=shared_cty_lookup, 
+                                   shared_band_allocator=shared_band_allocator)
+                    setattr(log, '_log_manager_ref', self)
+                    log.apply_annotations()
+                    
+                    self.logs.append(log)
+                    logging.info(f"Successfully loaded and processed log for {log.get_metadata().get('MyCall', 'Unknown')}.")
 
             except Exception as e:
                 logging.error(f"Error loading log {path}: {e}")
@@ -206,6 +221,7 @@ class LogManager:
         # This ensures that Log 1, Log 2, etc. are consistent regardless of upload order.
         self.logs.sort(key=lambda x: str(x.get_metadata().get('MyCall', 'Unknown')).upper())
 
+    @profile_section("Finalize Loading (Total)")
     def finalize_loading(self, root_reports_dir: str, debug_data: bool = False):
         """
         Should be called after all logs are loaded to perform final,
@@ -220,9 +236,10 @@ class LogManager:
         # --- Pre-calculate Time-Series Scores ---
         # This must be done after the master time index is created but before
         # any reports are generated.
-        logging.info("Pre-calculating time-series scores for all logs...")
-        for log in self.logs:
-            log._pre_calculate_time_series_score()
+        with ProfileContext("Time-Series Score Pre-calculation"):
+            logging.info("Pre-calculating time-series scores for all logs...")
+            for log in self.logs:
+                log._pre_calculate_time_series_score()
 
         if not self.logs:
             return
@@ -304,6 +321,7 @@ class LogManager:
         else:
             return ""
 
+    @profile_section("Master Time Index Creation")
     def _create_master_time_index(self):
         """
         Creates a master time index from all logs.

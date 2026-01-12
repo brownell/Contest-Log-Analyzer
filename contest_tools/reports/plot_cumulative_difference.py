@@ -112,9 +112,15 @@ class Report(ContestReport):
         call1 = log1.get_metadata().get('MyCall', 'Log1')
         call2 = log2.get_metadata().get('MyCall', 'Log2')
         
-        # --- DAL Integration (v1.3.1) ---
-        agg = TimeSeriesAggregator([log1, log2])
-        ts_data = agg.get_time_series_data(band_filter=band_filter, mode_filter=mode_filter)
+        # --- Phase 1 Performance Optimization: Use Cached Aggregator Data ---
+        get_cached_ts_data = kwargs.get('_get_cached_ts_data')
+        if get_cached_ts_data:
+            # Use cached time series data (avoids recreating aggregator and recomputing)
+            ts_data = get_cached_ts_data(band_filter=band_filter, mode_filter=mode_filter)
+        else:
+            # Fallback to old behavior for backward compatibility
+            agg = TimeSeriesAggregator([log1, log2])
+            ts_data = agg.get_time_series_data(band_filter=band_filter, mode_filter=mode_filter)
         
         time_bins = [pd.Timestamp(t) for t in ts_data['time_bins']]
 

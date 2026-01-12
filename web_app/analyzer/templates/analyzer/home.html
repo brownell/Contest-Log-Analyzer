@@ -56,6 +56,9 @@
                     <h5 class="mb-0 fw-bold text-secondary"><i class="bi bi-upload me-2"></i>Manual Log Upload</h5>
                 </div>
                 <div class="card-body p-4">
+                    <div class="alert alert-info border-0 shadow-sm mb-4">
+                        <i class="bi bi-info-circle-fill me-2"></i><strong>Upload 1, 2, or 3 Logs:</strong> Log 1 is required. Logs 2 and 3 are optional for comparison analysis.
+                    </div>
                     <form method="post" action="{% url 'analyze' %}" enctype="multipart/form-data">
                         {% csrf_token %}
                         <input type="hidden" id="request_id" name="request_id" value="">
@@ -84,7 +87,7 @@
                         </div>
 
                         <div class="d-grid gap-2 col-md-4 mx-auto mt-4">
-                            <button type="submit" class="btn btn-primary btn-lg shadow-sm">
+                            <button type="submit" class="btn btn-primary btn-lg shadow-sm" id="btnAnalyzeLogs" disabled>
                                 <i class="bi bi-bar-chart-fill me-2"></i>Analyze Logs
                             </button>
                         </div>
@@ -186,6 +189,7 @@
 
                         <div id="archiveSlots" class="d-none border-top pt-4">
                             <h6 class="fw-bold text-primary mb-3">Select Logs to Analyze</h6>
+                            <p class="small text-muted mb-3"><i class="bi bi-info-circle me-1"></i>Select 1, 2, or 3 logs. At least one log is required; additional logs are optional for comparison.</p>
                             <div class="row g-3">
                                 <div class="col-md-4">
                                     <label class="form-label small text-muted">Log Slot 1</label>
@@ -391,6 +395,19 @@
             // Generate UUID-like ID for this request
             const requestId = 'req_' + Math.random().toString(36).substr(2, 9);
             requestIdInput.value = requestId;
+            
+            // Enable/disable Analyze Logs button based on file selection
+            const btnAnalyzeLogs = document.getElementById('btnAnalyzeLogs');
+            const fileInputs = form.querySelectorAll('input[type="file"]');
+            
+            function updateAnalyzeButton() {
+                const hasFile = Array.from(fileInputs).some(input => input.files && input.files.length > 0);
+                btnAnalyzeLogs.disabled = !hasFile;
+            }
+            
+            fileInputs.forEach(input => {
+                input.addEventListener('change', updateAnalyzeButton);
+            });
             
             function startPolling(id) {
                 const pollInterval = setInterval(() => {

@@ -130,3 +130,52 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Security: Allow iframes from the same origin (Required for Sub-Page Views)
 X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+# Logging Configuration
+# When CLA_PROFILE=1 is set (via docker-compose.yml), enable INFO level logging
+# to display performance profiling messages from contest_tools.utils.profiler
+CLA_PROFILE_ENABLED = os.environ.get('CLA_PROFILE') == '1'
+LOG_LEVEL = 'INFO' if CLA_PROFILE_ENABLED else 'WARNING'
+
+# Diagnostic: Print profiling status at startup (helps verify env var is being read)
+if CLA_PROFILE_ENABLED:
+    print("✅ Performance profiling ENABLED (CLA_PROFILE=1 detected)")
+else:
+    print("ℹ️  Performance profiling DISABLED (set CLA_PROFILE=1 in docker-compose.yml to enable)")
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'standard': {
+            'format': '%(levelname)s: (%(name)s) %(message)s',
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'standard',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': LOG_LEVEL,
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': LOG_LEVEL,
+            'propagate': False,
+        },
+        'contest_tools': {
+            'handlers': ['console'],
+            'level': LOG_LEVEL,
+            'propagate': False,
+        },
+        'web_app': {
+            'handlers': ['console'],
+            'level': LOG_LEVEL,
+            'propagate': False,
+        },
+    },
+}

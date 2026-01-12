@@ -53,6 +53,7 @@ class Report(ContestReport):
     report_name = "Multiplier Breakdown (Text)"
     is_specialized = False
     supports_multi = True
+    supports_single = True
 
     def generate(self, output_path: str, **kwargs) -> str:
         # 1. Aggregate Data

@@ -70,10 +70,25 @@
         </div>
         
         <div class="horiz-grid">
+            {% if not is_solo %}
             <div class="horiz-common">
                 <div class="display-4 fw-bold text-secondary">{{ row.common }}</div>
                 <div class="small fw-bold text-muted text-uppercase ls-1">Common</div>
             </div>
+            {% else %}
+            {% for stat in row.stations %}
+            {% if forloop.first %}
+            <div class="horiz-common">
+                <div class="display-4 fw-bold text-secondary">{{ stat.unique_run|add:stat.unique_sp|add:stat.unique_unk }}</div>
+                <div class="small fw-bold text-muted text-uppercase ls-1">Total</div>
+                <div class="d-flex gap-2 mt-2 justify-content-center">
+                    <span class="small"><strong>{{ stat.unique_run }}</strong> Run</span>
+                    <span class="small"><strong>{{ stat.unique_sp }}</strong> S&P</span>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
             
             <div class="horiz-strategy">
                 <div class="grid-lines-container">
@@ -184,10 +199,25 @@
                                     {% endfor %}
                                 </div>
                
+                                {% if not is_solo %}
                                 <div class="vert-foundation">
                                      <div class="h4 fw-bold text-secondary m-0">{{ row.common }}</div>
                                     <div class="small fw-bold text-muted text-uppercase" style="font-size:0.6rem;">Common</div>
                                 </div>
+                                {% else %}
+                                {% for stat in row.stations %}
+                                {% if forloop.first %}
+                                <div class="vert-foundation">
+                                     <div class="h4 fw-bold text-secondary m-0">{{ stat.unique_run|add:stat.unique_sp|add:stat.unique_unk }}</div>
+                                    <div class="small fw-bold text-muted text-uppercase" style="font-size:0.6rem;">Total</div>
+                                    <div class="d-flex gap-1 mt-1 justify-content-center" style="font-size:0.5rem;">
+                                        <span><strong>{{ stat.unique_run }}</strong>R</span>
+                                        <span><strong>{{ stat.unique_sp }}</strong>S</span>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% endfor %}
+                                {% endif %}
      
                                 <div class="d-flex" style="background:#f8fafc;">
                                     {% for call in all_calls %}
@@ -300,10 +330,25 @@
                                 {% endfor %}
                                 </div>
                
+                            {% if not is_solo %}
                             <div class="vert-foundation">
                                 <div class="h4 fw-bold text-secondary m-0">{{ row.common }}</div>
                                 <div class="small fw-bold text-muted text-uppercase" style="font-size:0.6rem;">Common</div>
                            </div>
+                           {% else %}
+                           {% for stat in row.stations %}
+                           {% if forloop.first %}
+                           <div class="vert-foundation">
+                                <div class="h4 fw-bold text-secondary m-0">{{ stat.unique_run|add:stat.unique_sp|add:stat.unique_unk }}</div>
+                                <div class="small fw-bold text-muted text-uppercase" style="font-size:0.6rem;">Total</div>
+                                <div class="d-flex gap-1 mt-1 justify-content-center" style="font-size:0.5rem;">
+                                    <span><strong>{{ stat.unique_run }}</strong>R</span>
+                                    <span><strong>{{ stat.unique_sp }}</strong>S</span>
+                                </div>
+                           </div>
+                           {% endif %}
+                           {% endfor %}
+                           {% endif %}
      
                              <div class="d-flex" style="background:#f8fafc;">
                                 {% for call in all_calls %}
@@ -323,11 +368,13 @@
     <h5 class="fw-bold text-secondary mb-3 mt-5 pt-4"><i class="bi bi-file-text me-2"></i>Analysis Reports</h5>
     
     <ul class="nav nav-tabs mb-4" id="analysisTabs" role="tablist">
+        {% if not is_solo %}
         <li class="nav-item" role="presentation">
             <button class="nav-link active" id="session-tab" data-bs-toggle="tab" data-bs-target="#session" type="button" role="tab" aria-controls="session" aria-selected="true">
                 Missed Multipliers
             </button>
         </li>
+        {% endif %}
         {% if not is_solo and all_calls|length > 2 %}
         <li class="nav-item" role="presentation">
             <button class="nav-link" id="pairs-tab" data-bs-toggle="tab" data-bs-target="#pairs" type="button" role="tab" aria-controls="pairs" aria-selected="false">
@@ -335,11 +382,13 @@
             </button>
         </li>
         {% endif %}
+        {% if not is_solo %}
         <li class="nav-item" role="presentation">
             <button class="nav-link" id="singles-tab" data-bs-toggle="tab" data-bs-target="#singles" type="button" role="tab" aria-controls="singles" aria-selected="false">
                 Station Detail
             </button>
         </li>
+        {% endif %}
         <li class="nav-item" role="presentation">
             <button class="nav-link" id="breakdown-tab" data-bs-toggle="tab" data-bs-target="#breakdown" type="button" role="tab" aria-controls="breakdown" aria-selected="false">
                 Multiplier Breakdowns
@@ -348,12 +397,8 @@
     </ul>
 
     <div class="tab-content" id="analysisTabsContent">
+        {% if not is_solo %}
         <div class="tab-pane fade show active" id="session" role="tabpanel" aria-labelledby="session-tab">
-            {% if is_solo %}
-            <div class="alert alert-info border-0 shadow-sm">
-                <i class="bi bi-info-circle-fill me-2"></i><strong>Not Applicable:</strong> Missed Multiplier reports require comparative data (2+ logs).
-            </div>
-            {% else %}
             <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4">
                 {% for mult in multipliers %}
                     {% if mult.session.missed %}
@@ -375,9 +420,10 @@
                      <div class="col-12 text-muted">No Missed Multiplier reports generated.</div>
                 {% endfor %}
             </div>
-            {% endif %}
         </div>
+        {% endif %}
 
+        {% if not is_solo %}
         <div class="tab-pane fade" id="pairs" role="tabpanel" aria-labelledby="pairs-tab">
              <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4">
                 {% for mult in multipliers %}
@@ -404,7 +450,9 @@
                 {% endfor %}
              </div>
         </div>
+        {% endif %}
 
+        {% if not is_solo %}
         <div class="tab-pane fade" id="singles" role="tabpanel" aria-labelledby="singles-tab">
              <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4">
                 {% for mult in multipliers %}
@@ -431,9 +479,11 @@
                 {% endfor %}
              </div>
         </div>
+        {% endif %}
 
-        <div class="tab-pane fade" id="breakdown" role="tabpanel" aria-labelledby="breakdown-tab">
+        <div class="tab-pane fade {% if is_solo %}show active{% endif %}" id="breakdown" role="tabpanel" aria-labelledby="breakdown-tab">
             <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4">
+                {% if breakdown_txt_url %}
                 <div class="col">
                     <div class="card h-100 shadow-sm border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center">
@@ -445,6 +495,7 @@
                         </div>
                     </div>
                 </div>
+                {% endif %}
 
                 {% for mult in multipliers %}
                     {% if mult.session.summary %}

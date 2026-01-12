@@ -104,7 +104,7 @@ class Report(ContestReport):
         create_output_directory(output_path)
         
         # 1. Prepare Data
-        data = self._prepare_data()
+        data = self._prepare_data(**kwargs)
         
         time_bins = data['time_bins']
         callsigns = data['callsigns']
@@ -345,7 +345,7 @@ class Report(ContestReport):
 
         return f"Interactive animation generated: {filename}"
 
-    def _prepare_data(self) -> Dict[str, Any]:
+    def _prepare_data(self, **kwargs) -> Dict[str, Any]:
         """
         Aggregates and aligns data from TimeSeries and Matrix aggregators.
         """
@@ -358,13 +358,26 @@ class Report(ContestReport):
             if log_manager:
                 master_index = log_manager.master_time_index
 
-        ts_agg = TimeSeriesAggregator(self.logs)
-        # Note: We don't filter by band/mode here to get global totals for the top chart
-        ts_raw = ts_agg.get_time_series_data() 
+        # --- Phase 1 Performance Optimization: Use Cached Aggregator Data ---
+        get_cached_ts_data = kwargs.get('_get_cached_ts_data')
+        get_cached_matrix_data = kwargs.get('_get_cached_matrix_data')
         
-        matrix_agg = MatrixAggregator(self.logs)
-        # Pass the authoritative index to prevent "off-by-one-bin" shape mismatches
-        matrix_raw = matrix_agg.get_stacked_matrix_data(bin_size='60min', time_index=master_index)
+        if get_cached_ts_data:
+            # Use cached time series data (avoids recreating aggregator and recomputing)
+            ts_raw = get_cached_ts_data()
+        else:
+            # Fallback to old behavior for backward compatibility
+            ts_agg = TimeSeriesAggregator(self.logs)
+            ts_raw = ts_agg.get_time_series_data()
+        
+        get_cached_stacked_matrix_data = kwargs.get('_get_cached_stacked_matrix_data')
+        if get_cached_stacked_matrix_data:
+            # Use cached stacked matrix data (avoids recreating aggregator and recomputing)
+            matrix_raw = get_cached_stacked_matrix_data(bin_size='60min', mode_filter=None, time_index=master_index)
+        else:
+            # Fallback to old behavior for backward compatibility
+            matrix_agg = MatrixAggregator(self.logs)
+            matrix_raw = matrix_agg.get_stacked_matrix_data(bin_size='60min', time_index=master_index)
 
         callsigns = sorted(list(ts_raw['logs'].keys()))
         time_bins = ts_raw['time_bins']

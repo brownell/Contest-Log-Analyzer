@@ -236,10 +236,20 @@ class Report(ContestReport):
         log1, log2 = self.logs[0], self.logs[1]
         created_files = []
 
-        aggregator = MatrixAggregator(self.logs)
+        # --- Phase 1 Performance Optimization: Use Cached Aggregator Data ---
+        get_cached_matrix_data = kwargs.get('_get_cached_matrix_data')
+        if get_cached_matrix_data:
+            # Use cached matrix data (avoids recreating aggregator and recomputing)
+            aggregator = None  # Not needed when using cache
+        else:
+            # Fallback to old behavior for backward compatibility
+            aggregator = MatrixAggregator(self.logs)
 
         # --- 1. Generate the main "All Modes" plot ---
-        matrix_data_all = aggregator.get_matrix_data(bin_size='15min', mode_filter=None)
+        if get_cached_matrix_data:
+            matrix_data_all = get_cached_matrix_data(bin_size='15min', mode_filter=None)
+        else:
+            matrix_data_all = aggregator.get_matrix_data(bin_size='15min', mode_filter=None)
         
         filepath = self._run_plot_for_slice(matrix_data_all, log1, log2, output_path, BANDS_PER_PAGE, mode_filter=None, **kwargs)
         if filepath:
@@ -254,7 +264,10 @@ class Report(ContestReport):
         if len(modes_present) > 1:
             for mode in ['CW', 'PH', 'DG']:
                 if mode in modes_present:
-                    matrix_data_mode = aggregator.get_matrix_data(bin_size='15min', mode_filter=mode)
+                    if get_cached_matrix_data:
+                        matrix_data_mode = get_cached_matrix_data(bin_size='15min', mode_filter=mode)
+                    else:
+                        matrix_data_mode = aggregator.get_matrix_data(bin_size='15min', mode_filter=mode)
                     
                     filepath = self._run_plot_for_slice(matrix_data_mode, log1, log2, output_path, BANDS_PER_PAGE, mode_filter=mode, **kwargs)
                     if filepath:

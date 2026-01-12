@@ -249,8 +249,15 @@ class Report(ContestReport):
         created_files = []
 
         # --- 1. Generate the main "All Modes" plot ---
-        aggregator = MatrixAggregator(self.logs)
-        matrix_data_all = aggregator.get_matrix_data(bin_size='15min', mode_filter=None)
+        # --- Phase 1 Performance Optimization: Use Cached Aggregator Data ---
+        get_cached_matrix_data = kwargs.get('_get_cached_matrix_data')
+        if get_cached_matrix_data:
+            # Use cached matrix data (avoids recreating aggregator and recomputing)
+            matrix_data_all = get_cached_matrix_data(bin_size='15min', mode_filter=None)
+        else:
+            # Fallback to old behavior for backward compatibility
+            aggregator = MatrixAggregator(self.logs)
+            matrix_data_all = aggregator.get_matrix_data(bin_size='15min', mode_filter=None)
         
         msg = self._generate_plot_for_slice(matrix_data_all, log1, log2, output_path, mode_filter=None, **kwargs)
         created_files.append(msg)
@@ -267,7 +274,10 @@ class Report(ContestReport):
             for mode in modes_to_plot:
                 if mode in modes_present:
                     # Fetch specific DAL slice
-                    matrix_data_mode = aggregator.get_matrix_data(bin_size='15min', mode_filter=mode)
+                    if get_cached_matrix_data:
+                        matrix_data_mode = get_cached_matrix_data(bin_size='15min', mode_filter=mode)
+                    else:
+                        matrix_data_mode = aggregator.get_matrix_data(bin_size='15min', mode_filter=mode)
                     
                     msg = self._generate_plot_for_slice(matrix_data_mode, log1, log2, output_path, mode_filter=mode, **kwargs)
                     created_files.append(msg)

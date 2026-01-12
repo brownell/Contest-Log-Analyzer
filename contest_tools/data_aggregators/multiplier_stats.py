@@ -334,26 +334,42 @@ class MultiplierStatsAggregator:
             # Common is intersection of all logs involved
             common_items = set.intersection(*sets_to_compare.values()) if sets_to_compare else set()
             
+            is_single_log = len(all_calls) == 1
+            
             stations_list = []
             for call in all_calls:
                 metrics = comp.station_metrics.get(call)
                 if metrics:
-                    # Unique = Log Set - Common Set
                     log_set = sets_to_compare[call]
-                    unique_items = log_set - common_items
                     
-                    u_run = 0
-                    u_sp = 0
-                    u_unk = 0
-                    
-                    for item in unique_items:
-                        status = mult_status_map[call].get(item, 'Unk')
-                        # Map 'Both' to 'Run' or 'S&P'? Usually 'Run' is dominant/preferred, 
-                        # but 'Both' implies it was worked multiple times.
-                        # Let's map 'Both' to 'Run' as it indicates ability to hold frequency.
-                        if status in ['Run', 'Mixed']: u_run += 1
-                        elif status == 'S&P': u_sp += 1
-                        else: u_unk += 1
+                    if is_single_log:
+                        # For single log: Calculate Run/S&P totals from entire set (not just unique)
+                        # This replaces "Common" with Run/S&P breakdown for single log display
+                        u_run = 0
+                        u_sp = 0
+                        u_unk = 0
+                        
+                        for item in log_set:
+                            status = mult_status_map[call].get(item, 'Unk')
+                            if status in ['Run', 'Mixed']: u_run += 1
+                            elif status == 'S&P': u_sp += 1
+                            else: u_unk += 1
+                    else:
+                        # For multi-log: Unique = Log Set - Common Set
+                        unique_items = log_set - common_items
+                        
+                        u_run = 0
+                        u_sp = 0
+                        u_unk = 0
+                        
+                        for item in unique_items:
+                            status = mult_status_map[call].get(item, 'Unk')
+                            # Map 'Both' to 'Run' or 'S&P'? Usually 'Run' is dominant/preferred, 
+                            # but 'Both' implies it was worked multiple times.
+                            # Let's map 'Both' to 'Run' as it indicates ability to hold frequency.
+                            if status in ['Run', 'Mixed']: u_run += 1
+                            elif status == 'S&P': u_sp += 1
+                            else: u_unk += 1
 
                     stations_list.append({
                         'count': metrics.count,
