@@ -1,0 +1,120 @@
+{
+  "_filename": "contest_tools/contest_definitions/laqp.json",
+  "_version": "0.91.11-Beta",
+  "_date": "2025-10-10",
+  "contest_name": "LA-QSO-PARTY",
+  "scoring_module": "laqp_scoring",
+  "valid_bands": [
+    "160M",
+    "80M",
+    "40M",
+    "20M",
+    "15M",
+    "10M"
+  ],
+  "operating_time_rules": {
+    "min_off_time_minutes": 30,
+    "single_op_max_hours": 10,
+    "multi_op_max_hours": 12
+  },
+  "dupe_check_scope": "per_band",
+  "score_formula": "qsos_times_mults",
+  "enable_adif_export": true,
+  "is_laqp_ruleset": true,
+  "custom_multiplier_resolver": "laqp_multiplier_resolver",
+  "custom_adif_exporter": "laqp_adif",
+  "time_series_calculator": "laqp_calculator",
+  "excluded_reports": [
+    "text_wae_score_report",
+    "text_wae_comparative_score_report"
+  ],
+  "mutually_exclusive_mults": [
+    [
+      "Mult_STPROV",
+      "Mult_NADXCC"
+    ]
+  ],
+  "contest_specific_event_id_resolver": "laqp_event_id_resolver",
+  "exchange_parsing_rules": {
+    "laqp-CW": {
+      "regex": "([A-Z0-9]+)\\s+([A-Z0-9/]+)\\s+([A-Z0-9/]+)\\s+([A-Z0-9]+)\\s+([A-Z0-9/]+)(?:\\s+(\\d))?",
+      "groups": [
+        "SentName",
+        "SentLocation",
+        "Call",
+        "RcvdName",
+        "RcvdLocation",
+        "Transmitter"
+      ]
+    },
+    "laqp-PH": {
+      "regex": "([A-Z0-9]+)\\s+([A-Z0-9/]+)\\s+([A-Z0-9/]+)\\s+([A-Z0-9]+)\\s+([A-Z0-9/]+)(?:\\s+(\\d))?",
+      "groups": [
+        "SentName",
+        "SentLocation",
+        "Call",
+        "RcvdName",
+        "RcvdLocation",
+        "Transmitter"
+      ]
+    },
+    "laqp-RTTY": {
+      "regex": "([A-Z0-9]+)\\s+([A-Z0-9/]+)\\s+([A-Z0-9/]+)\\s+([A-Z0-9]+)\\s+([A-Z0-9/]+)(?:\\s+(\\d))?",
+      "groups": [
+        "SentName",
+        "SentLocation",
+        "Call",
+        "RcvdName",
+        "RcvdLocation",
+        "Transmitter"
+      ]
+    }
+  },
+  "multiplier_rules": [
+    {
+      "name": "STPROV",
+      "value_column": "Mult_STPROV",
+      "name_column": "Mult_STPROVName",
+      "totaling_method": "sum_by_band"
+    },
+    {
+      "name": "NA DXCC",
+      "value_column": "Mult_NADXCC",
+      "name_column": "Mult_NADXCCName",
+      "totaling_method": "sum_by_band"
+    }
+  ],
+  "default_qso_columns": [
+    "ContestName",
+    "MyCall",
+    "Frequency",
+    "Mode",
+    "Datetime",
+    "SentRST",
+    "SentName",
+    "SentLocation",
+    "Call",
+    "RcvdRST",
+    "RcvdName",
+    "RcvdLocation",
+    "Transmitter",
+    "Band",
+    "Date",
+    "Hour",
+    "Dupe",
+    "DXCCName",
+    "DXCCPfx",
+    "CQZone",
+    "ITUZone",
+    "Continent",
+    "Lat",
+    "Lon",
+    "Tzone",
+    "Run",
+    "QSOPoints",
+    "Mult_STPROV",
+    "Mult_STPROVName",
+    "Mult_NADXCC",
+    "Mult_NADXCCName"
+  ]
+}

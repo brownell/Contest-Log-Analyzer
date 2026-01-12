@@ -32,7 +32,7 @@ from ..cabrillo_parser import parse_qso_common_fields
 
 def parse_log(filepath: str, contest_definition: ContestDefinition, root_input_dir: str, cty_dat_path: str) -> Tuple[pd.DataFrame, Dict[str, Any]]:
     """
-    Custom parser for the North American QSO Party (NAQP) contest.
+    Custom parser for the Louisiana QSQ Party (NAQP) contest.
     """
     log_metadata: Dict[str, Any] = {}
     qso_records: List[Dict[str, Any]] = []

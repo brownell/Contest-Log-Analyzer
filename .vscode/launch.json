@@ -1,0 +1,24 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "CLA",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/main_cli.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--report",
+                "score_report", 
+                "aa0aw.log",
+                "aa0fo.log",
+                "aa2ad.log",
+                "aa3r.log"
+                
+            ]
+            }
+    ]
+}

@@ -1,7 +1,7 @@
-# contest_tools/score_calculators/naqp_calculator.py
+# contest_tools/score_calculators/laqp_calculator.py
 #
 # Purpose: This module provides the complex, contest-specific time-series
-#          score calculator for the Louisiana QSQ Party (NAQP) Contest.
+#          score calculator for the Louisiana QSQ Party (laqp) Contest.
 #
 #
 # Author: Gemini AI
@@ -30,7 +30,7 @@
 # - Fixed bug where multipliers were counted for non-NA/KH6 stations. The
 #   calculator now filters for multiplier-eligible QSOs before counting.
 # [0.90.6-Beta] - 2025-10-01
-# - Initial release of the dedicated calculator for NAQP.
+# - Initial release of the dedicated calculator for laqp.
 # - Implements the correct scoring logic where the QSO count includes all
 #   valid QSOs (including DX), while the multiplier count is derived only
 #   from multiplier-eligible QSOs (NA + KH6).
@@ -44,15 +44,15 @@ from .calculator_interface import TimeSeriesCalculator
 if TYPE_CHECKING:
     from ..contest_log import ContestLog
 
-class NaqpCalculator(TimeSeriesCalculator):
+class LaqpCalculator(TimeSeriesCalculator):
     """
-    Calculates the time-series score for the NAQP contest, handling the
+    Calculates the time-series score for the laqp contest, handling the
     unique rule where the set of QSOs for scoring is different from the
     set of QSOs that provide multipliers.
     """
     def calculate(self, log: 'ContestLog', df_non_dupes: pd.DataFrame) -> pd.DataFrame:
         """
-        Calculates a cumulative, time-series score for a NAQP log.
+        Calculates a cumulative, time-series score for a laqp log.
         Score = (Total QSOs) * (Total Multipliers)
         """
 
@@ -72,7 +72,7 @@ class NaqpCalculator(TimeSeriesCalculator):
         sp_unk_qso_ts = cum_qso_ts - run_qso_ts
         
         # --- 2. Create a separate DataFrame for Multiplier-Eligible QSOs ---
-        # Per NAQP rules, multipliers are NA stations plus Hawaii (KH6).
+        # Per laqp rules, multipliers are NA stations plus Hawaii (KH6).
         # All other QSOs (DX) count for points but not multipliers.
         df_for_mults = df_sorted[
             (df_sorted['Continent'] == 'NA') | (df_sorted['DXCCPfx'] == 'KH6')

@@ -1,4 +1,4 @@
-# contest_tools/event_resolvers/naqp_event_id_resolver.py
+# contest_tools/event_resolvers/laqp_event_id_resolver.py
 #
 # Purpose: A contest-specific event ID resolver for the Louisiana QSQ Party (NAQP)
 #          contests. It takes a datetime object and returns a unique, three-letter
