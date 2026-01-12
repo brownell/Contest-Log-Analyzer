@@ -1,10 +1,38 @@
+# requirements.txt
+#
+# Purpose: Defines the Python package dependencies for the Contest Log Analyzer
+#          Web Application (Phase 3). Merges core analysis libraries with
+#          web framework requirements.
+#
+# Author: Gemini AI
+# Date: 2025-12-11
+# Version: 0.103.2-Beta
+#
+# Copyright (c) 2025 Mark Bailey, KD4D
+# Contact: kd4d@kd4d.org
+#
+# License: Mozilla Public License, v. 2.0
+#          (https://www.mozilla.org/MPL/2.0/)
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+# --- Revision History ---
+# [0.103.2-Beta] - 2025-12-12
+# - Added 'beautifulsoup4', 'lxml', 'tabulate', 'prettytable' to support core libraries.
+# [0.103.1-Beta] - 2025-12-12
+# - Added 'requests' dependency to fix runtime crash in core library import.
+# [0.102.0-Beta] - 2025-12-11
+# - Initial creation for Phase 3.
+# - Merged pandas/plotly (core) with Django/gunicorn (web).
+
 Django>=4.2,<5.3
-gunicorn>=20.1.0
-python-dotenv>=1.0.0
-beautifulsoup4>=4.12
-requests>=2.31.0
+pandas>=2.0.0
+plotly>=5.15.0
+gunicorn>=21.2.0
 whitenoise>=6.5.0
-pandas
-prettytable
-tabulate
-plotly
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+tabulate>=0.9.0
+prettytable>=3.9.0
