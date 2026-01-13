@@ -4,10 +4,6 @@
 #          direct DataFrame access. It handles the hierarchical (Band -> Mode)
 #          aggregation and multiplier totaling rules.
 #
-# Author: Gemini AI
-# Date: 2026-01-05
-# Version: 0.160.0-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -15,15 +11,8 @@
 #          (https://www.mozilla.org/MPL/2.0/)
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0.
-# If a copy of the MPL was not distributed with this
+# License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-#
-# --- Revision History ---
-# [0.160.0-Beta] - 2026-01-05
-# - Added get_diagnostic_stats method to report on Unknown/Unassigned multipliers.
-# [0.158.0-Beta] - 2026-01-05
-# - Initial creation. Migrated logic from text_score_report.py.
 
 from typing import List, Dict, Any, Tuple
 import pandas as pd

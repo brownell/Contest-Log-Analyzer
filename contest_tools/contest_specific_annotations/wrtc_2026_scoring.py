@@ -2,11 +2,15 @@
 #
 # Purpose: Provides contest-specific scoring logic for the WRTC 2026 contest.
 #
-# Author: Gemini AI
-# Date: 2025-10-09
-# Version: 0.91.0-Beta
+# Copyright (c) 2025 Mark Bailey, KD4D
+# Contact: kd4d@kd4d.org
 #
 # License: Mozilla Public License, v. 2.0
+#          (https://www.mozilla.org/MPL/2.0/)
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import pandas as pd
 import logging

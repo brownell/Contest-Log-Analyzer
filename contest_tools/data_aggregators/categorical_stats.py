@@ -3,10 +3,6 @@
 # Purpose: DAL Component to handle aggregation logic related to categorical data
 #          such as QSO point breakdowns and set comparisons (unique/common QSOs).
 #
-# Author: Gemini AI
-# Date: 2026-01-05
-# Version: 0.159.0-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -14,26 +10,8 @@
 #          (https://www.mozilla.org/MPL/2.0/)
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0.
-# If a copy of the MPL was not distributed with this
+# License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-#
-# --- Revision History ---
-# [0.159.0-Beta] - 2026-01-05
-# - Updated get_log_summary_stats to return metadata context (DAL Migration).
-# [0.153.0-Beta] - 2026-01-05
-# - Added include_dupes parameter to compute_comparison_breakdown.
-# - Added common_detail to comparison return value for independent mode stats.
-# [0.152.0-Beta] - 2026-01-05
-# - Added get_continent_stats to support text_continent_summary report.
-# [0.151.3-Beta] - 2026-01-05
-# - Added get_log_summary_stats method to support text_summary report.
-# [0.151.2-Beta] - 2026-01-04
-# - Added get_category_breakdown method to support text_continent_breakdown report.
-# [0.151.1-Beta] - 2025-12-31
-# - Redirected _report_utils import to contest_tools.utils.report_utils.
-# [0.93.1-Beta] - 2025-11-25
-# - Initial creation.
 
 from typing import List, Dict, Union, Set, Tuple, Any
 import pandas as pd

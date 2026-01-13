@@ -3,10 +3,6 @@
 # Purpose: Abstract base class for rate-based plot reports (QSO Rate, Point Rate).
 #          Consolidates visualization logic, layout fixes, and JSON artifact generation.
 #
-# Author: Gemini AI
-# Date: 2026-01-05
-# Version: 0.159.0-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -18,20 +14,6 @@
 # If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #
-# --- Revision History ---
-# [0.159.0-Beta] - 2026-01-05
-# - Disabled PNG generation logic (Kaleido dependency removal) for Web Architecture.
-# [0.158.0-Beta] - 2026-01-05
-# - Removed PNG generation (fig.write_image) to resolve Kaleido dependency issues in web container.
-# [0.151.1-Beta] - 2026-01-01
-# - Repair import path for report_utils to fix circular dependency.
-# [0.151.0-Beta] - 2026-01-01
-# - Refactored imports to use `contest_tools.utils.report_utils` to break circular dependency.
-# [0.134.0-Beta] - 2025-12-29
-# - Initial creation. Refactored from plot_qso_rate.py.
-# - Implemented vertical_spacing=0.15 to fix overlap.
-# - Added JSON artifact generation for Web Dashboard.
-
 from typing import List, Optional
 import os
 import pandas as pd

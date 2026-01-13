@@ -2,10 +2,6 @@
 #
 # Purpose: Specialized HTML report for multiplier breakdown (Group Par) with offline visual support.
 #
-# Author: Gemini AI
-# Date: 2025-12-30
-# Version: 0.156.4-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -17,27 +13,6 @@
 # If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #
-# --- Revision History ---
-# [0.156.4-Beta] - 2025-12-30
-# - Injected 'missed' metric (absolute delta) into station data for template consumption.
-# - Refactored global maximum calculation to use a helper function and include 'totals' row.
-# [0.151.1-Beta] - 2026-01-01
-# - Repair import path for report_utils to fix circular dependency.
-# [0.151.0-Beta] - 2026-01-01
-# - Refactored imports to use `contest_tools.utils.report_utils` to break circular dependency.
-# [0.157.3-Beta] - 2025-12-31
-# - Ported `global_max` calculation logic from views.py to fix invisible vertical bars in offline reports.
-# [0.157.0-Beta] - 2025-12-31
-# - Implemented Twin Context Architecture: Inlines 'dashboard.css' for offline styling.
-# [0.155.3-Beta] - 2025-12-31
-# - Corrected static path construction for offline report generator.
-# [0.155.2-Beta] - 2025-12-30
-# - Added JS Inlining Logic for `html2canvas` to support offline "Camera" feature.
-# [0.131.1-Beta] - 2025-12-23
-# - Enable single-log support.
-# [0.137.0-Beta] - 2025-12-22
-# - Initial creation.
-
 import os
 from django.template.loader import render_to_string
 from django.conf import settings

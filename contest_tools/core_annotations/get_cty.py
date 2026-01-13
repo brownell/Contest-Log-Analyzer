@@ -4,10 +4,6 @@
 #          zones, and other geographical data from amateur radio callsigns
 #          based on the CTY.DAT file.
 #
-# Author: Gemini AI
-# Date: 2025-10-01
-# Version: 0.90.18-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -18,21 +14,7 @@
 # License, v. 2.0.
 # If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-# --- Revision History ---
-# [0.90.18-Beta] - 2025-12-10
-# Updated `extract_version_date` to prioritize parsing the `# RELEASE` header.
-# Retained full-file scan for embedded `=VER` tags as fallback.
-# [0.90.17-Beta] - 2025-12-10
-# Confirmed `extract_version_date` logic for `cty_wt_mod.dat` (embedded =VER tag).
-# [0.90.16-Beta] - 2025-12-10
-# Updated `extract_version_date` to scan entire file.
-# Fixed IndentationError.
-# [0.90.13-Beta] - 2025-12-10
-# Added `extract_version_date` static method to parse internal =VER tag.
-# [0.90.12-Beta] - 2025-12-10
-# Enhanced `_parse_cty_file` to support `wl_cty.dat` format by stripping comments and sanitizing trailing commas.
-# [0.90.0-Beta] - 2025-10-01
-# Set new baseline version for release.
+
 from typing import List, Dict, Optional, Tuple
 import re
 from collections import namedtuple

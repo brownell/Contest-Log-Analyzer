@@ -4,11 +4,6 @@
 #          for all standard contests that do not have complex, stateful
 #          scoring rules like QTCs or weighted multipliers.
 #
-#
-# Author: Gemini AI
-# Date: 2025-12-11
-# Version: 0.102.1-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -18,26 +13,6 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-# --- Revision History ---
-# [0.102.1-Beta] - 2025-12-11
-# - Decoupled point/QSO scoring from multiplier filtering to ensure zero-point
-#   QSOs still count towards totals if they are valid QSOs.
-# - Added enforcement of `mults_from_zero_point_qsos` definition flag to
-#   exclude zero-point QSOs from multiplier contribution when required.
-# [0.90.4-Beta] - 2025-10-01
-# - Added filter to drop QSOs where all multiplier columns are NaN before
-#   calculating QSO/Point counts, ensuring alignment with multiplier counts.
-# [0.90.2-Beta] - 2025-10-01
-# - Corrected scoring logic for `qsos_times_mults` contests. The QSO
-#   and Point counts are now derived from the same filtered DataFrame as
-#   the multiplier counts, excluding QSOs with "Unknown" multipliers.
-# [0.90.1-Beta] - 2025-10-01
-# - Corrected a systemic bug in multiplier counting for contests with
-#   multiple, non-sum_by_band multiplier types (e.g., NAQP, CQ-160). The
-#   logic now correctly calculates the cumulative count for each multiplier
-#   type independently before summing them.
-# [0.90.0-Beta] - 2025-10-01
-# Set new baseline version for release.
 
 import pandas as pd
 from typing import TYPE_CHECKING

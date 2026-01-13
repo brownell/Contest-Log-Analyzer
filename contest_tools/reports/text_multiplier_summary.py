@@ -3,10 +3,6 @@
 # Purpose: A data-driven text report that generates a summary of QSOs for a
 #          specific multiplier type (e.g., Countries, Zones).
 #
-# Author: Gemini AI
-# Date: 2026-01-05
-# Version: 0.162.0-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -14,27 +10,8 @@
 #          (https://www.mozilla.org/MPL/2.0/)
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0.
-# If a copy of the MPL was not distributed with this
+# License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-#
-# --- Revision History ---
-# [0.162.0-Beta] - 2026-01-05
-# - Standardized report filename generation to use `_` separator and sanitized callsigns.
-# [0.134.1-Beta] - 2025-12-20
-# - Added standard report header generation using `format_text_header`.
-# [0.125.0-Beta] - 2025-12-17
-# - Verified compatibility with refactored MultiplierStatsAggregator (Pivot Utils extraction).
-# [0.93.2] - 2025-12-04
-# - Refactored rendering logic to support single-line output for single logs
-#   while preserving indented hierarchy for comparative reports.
-# [0.93.1] - 2025-11-24
-# - Refactored to consume JSON-serializable types (Dicts/Lists) from
-#   MultiplierStatsAggregator, removing direct Pandas dependencies.
-# [0.93.0-Beta] - 2025-11-23
-# - Added logic to preserve "Prefixes" as a plural header.
-# [0.90.0-Beta] - 2025-10-01
-# - Set new baseline version for release.
 
 from typing import List
 import os

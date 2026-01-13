@@ -18,3 +18,16 @@ Archives/
 *_bundle.txt
 test_code/debug*.py
 test_code/exact_container.py
+
+# Exceptions: Important git workflow files that should always be tracked
+# Note: These exceptions ensure files are visible even if parent patterns change
+!.pre-commit-config.yaml
+!contest_tools/version.py
+!Docs/AI_AGENT_RULES.md
+!Docs/GitWorkflowSetup.md
+!tools/README.md
+!tools/setup_git_aliases.ps1
+!tools/setup_git_aliases.sh
+!tools/setup_git_workflow.bat
+!tools/setup_git_workflow.ps1
+!tools/update_version_hash.py

@@ -3,10 +3,6 @@
 # Purpose: Manages the lifecycle of cty.dat files, including on-demand
 #          downloading, caching, and indexing from the official source.
 #
-# Author: Gemini AI
-# Date: 2025-10-01
-# Version: 0.90.18-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -17,18 +13,7 @@
 # License, v. 2.0.
 # If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-# --- Revision History ---
-# [0.90.18-Beta] - 2025-12-10
-# Switched scraper logic to target `cty-XXXX.zip` (Standard CTY) to retrieve `cty_wt_mod.dat`.
-# Renamed output file to `cty_wt_mod_{version}.dat` for clarity.
-# [0.90.17-Beta] - 2025-12-10
-# Switched target source to Standard CTY zip (`cty-XXXX.zip`) to retrieve `cty_wt_mod.dat`.
-# [0.90.16-Beta] - 2025-12-10
-# Relaxed validation in `find_cty_file_by_date` to fallback to Web Index Date.
-# [0.90.14-Beta] - 2025-12-10
-# Completely refactored `_build_full_index` to use Sequential Pagination.
-# [0.90.0-Beta] - 2025-10-01
-# Set new baseline version for release.
+
 import os
 import sys
 import json

@@ -2,10 +2,6 @@
 #
 # Purpose: Defines the core logic for comparing sets of multipliers.
 #
-# Author: Gemini AI
-# Date: 2025-12-17
-# Version: 0.123.0-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -15,12 +11,6 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-#
-# --- Revision History ---
-# [0.123.0-Beta] - 2025-12-17
-# - Added missed_items set to StationMetrics to enable detailed reporting of missed multipliers.
-# [0.122.0-Beta] - 2025-12-17
-# - Initial creation of the ComparativeEngine.
 
 from dataclasses import dataclass
 from typing import Dict, Set

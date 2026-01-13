@@ -3,10 +3,6 @@
 # Purpose: A chart report that generates a breakdown of total points by QSO
 #          point value, presented as a series of pie charts per band for a SINGLE log.
 #
-# Author: Gemini AI
-# Date: 2026-01-05
-# Version: 0.159.0-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -17,29 +13,7 @@
 # License, v. 2.0.
 # If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-#
-# --- Revision History ---
-# [0.159.0-Beta] - 2026-01-05
-# - Disabled PNG generation logic (Kaleido dependency removal) for Web Architecture.
-# [0.151.3-Beta] - 2026-01-03
-# - Refactored imports to use contest_tools.utils.report_utils to break circular dependency.
-# [0.151.0-Beta] - 2026-01-01
-# - Refactored imports to use `contest_tools.utils.report_utils` to break circular dependency.
-# [0.131.0-Beta] - 2025-12-20
-# - Refactored to use `get_standard_title_lines` for standardized 3-line headers.
-# - Implemented explicit "Smart Scoping" for title generation.
-# - Added footer metadata via `get_cty_metadata`.
-# [0.118.0-Beta] - 2025-12-15
-# - Injected descriptive filename configuration for interactive HTML plot downloads.
-# [1.0.1] - 2025-12-08
-# - Fixed PNG layout issues by implementing dynamic figure sizing and explicit vertical spacing.
-# [1.0.0] - 2025-12-08
-# - Migrated visualization engine from Matplotlib to Plotly.
-# - Implemented dual-stack output (.png and .html).
-# - Integrated PlotlyStyleManager for consistent styling.
-# [0.93.7-Beta] - 2025-12-04
-# - Fixed runtime crash by ensuring the output directory is created before
-#   saving the chart file.
+
 import os
 from typing import List, Dict
 import pandas as pd

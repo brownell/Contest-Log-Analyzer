@@ -3,10 +3,6 @@
 # Purpose: This module provides the data aggregator function for the WRTC
 #          Propagation by Continent report.
 #
-# Author: Gemini AI
-# Date: 2025-12-31
-# Version: 0.151.1-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -14,19 +10,8 @@
 #          (https://www.mozilla.org/MPL/2.0/)
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0.
-# If a copy of the MPL was not distributed with this
+# License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-#
-# --- Revision History ---
-# [0.151.1-Beta] - 2025-12-31
-# - Redirected _report_utils import to contest_tools.utils.report_utils.
-# [0.93.0] - 2025-11-24
-# - Added strict JSON sanitization via NpEncoder to satisfy the
-#   Data Abstraction Layer requirements.
-# [0.92.0-Beta] - 2025-10-12
-# - Initial creation of the propagation data aggregator as part of the
-#   new data abstraction layer proof-of-concept.
 
 import json
 import pandas as pd

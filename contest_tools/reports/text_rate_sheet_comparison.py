@@ -2,10 +2,6 @@
 #
 # Purpose: A text report that generates a comparative hourly rate sheet for two or more logs.
 #
-# Author: Gemini AI
-# Date: 2026-01-05
-# Version: 0.159.0-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -13,38 +9,8 @@
 #          (https://www.mozilla.org/MPL/2.0/)
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0.
-# If a copy of the MPL was not distributed with this
+# License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-#
-# --- Revision History ---
-# [0.159.0-Beta] - 2026-01-05
-# - Updated metadata extraction to use TimeSeriesAggregator scalars (DAL Migration).
-# [0.151.2-Beta] - 2026-01-03
-# - Refactored imports to use absolute path `contest_tools.utils.report_utils` to resolve circular dependencies.
-# [0.134.0-Beta] - 2025-12-20
-# - Standardized report header to use `_report_utils`.
-# [0.116.0-Beta] - 2025-12-15
-# - Removed usage of get_copyright_footer.
-# [0.115.3-Beta] - 2025-12-15
-# - Added standardized copyright footer.
-# [0.113.0-Beta] - 2025-12-13
-# - Standardized filename generation: removed '_vs_' separator to match Web Dashboard conventions.
-# [2.1.1] - 2025-12-14
-# - Updated file generation to use `_sanitize_filename_part` for strict lowercase naming.
-# [2.1.0] - 2025-12-06
-# - Implemented Smart Suppression: Skips Band Detail blocks if only one mode is active.
-# [2.0.2] - 2025-12-06
-# - Fixed IndexError in lookup logic for missing bands/modes.
-# [2.0.1] - 2025-12-06
-# - Fixed bug where single-band summaries lacked mode breakdowns.
-# - Added 'mode' column handler to _build_comparison_block.
-# [2.0.0] - 2025-12-06
-# - Refactored to "Drill-Down" layout matching single rate sheet.
-# - Added Mode breakdowns (Detail Blocks) per band.
-# - Optimized column width usage for comparison data.
-# [0.90.0-Beta] - 2025-10-01
-# - Set new baseline version for release.
 
 from typing import List
 import pandas as pd

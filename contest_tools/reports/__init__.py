@@ -5,10 +5,6 @@
 #          It creates the AVAILABLE_REPORTS dictionary, which is used by the main
 #          CLI and ReportGenerator to access and run reports.
 #
-# Author: Gemini AI
-# Date: 2026-01-04
-# Version: 0.157.0-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -19,23 +15,6 @@
 # License, v. 2.0.
 # If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-#
-# --- Revision History ---
-# [0.157.0-Beta] - 2026-01-04
-# - ERROR HANDLING: Enhanced suppression for Django AppRegistry errors in CLI.
-# [0.106.3-Beta] - 2026-01-04
-# - ERROR HANDLING: Suppressed stack traces for Django settings errors in CLI mode.
-# [0.106.2-Beta] - 2026-01-04
-# - DIAGNOSTIC: Upgraded logging to 'exception' for full tracebacks on load failures.
-# [0.106.1-Beta] - 2025-12-13
-# - INJECTED DIAGNOSTICS: Elevated skip logs to WARNING for better visibility.
-# [0.106.0-Beta] - 2025-12-13
-# - Validated legacy dependency triage (Matplotlib/Jinja2) for Stabilization Phase.
-# [0.105.5-Beta] - 2025-12-13
-# - Added specific ImportError handling to silence logs for legacy reports
-#   dependent on missing libraries (matplotlib, jinja2) in the web container.
-# [0.90.0-Beta] - 2025-10-01
-# - Set new baseline version for release.
 
 import os
 import importlib

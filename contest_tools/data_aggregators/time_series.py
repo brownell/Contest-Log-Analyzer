@@ -3,10 +3,6 @@
 # Purpose: Aggregates time-series data from contest logs into a standardized
 #          JSON-compatible structure (Pure Python Primitives).
 #
-# Author: Gemini AI
-# Date: 2026-01-05
-# Version: 1.8.0
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -14,30 +10,8 @@
 #          (https://www.mozilla.org/MPL/2.0/)
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0.
-# If a copy of the MPL was not distributed with this
+# License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-#
-# --- Revision History ---
-# [1.8.0] - 2026-01-05
-# - Updated multiplier breakdown logic to respect `totaling_method` (e.g. sum_by_band).
-# [1.7.0] - 2025-12-14
-# - Added `sp_qsos`, `unknown_qsos`, `sp_points`, `unknown_points` streams
-#   to support granular difference plotting.
-# [1.6.0] - 2025-12-13
-# - Added `run_qsos` and `run_percent` to scalar output for Strategy Board dashboard.
-# [1.5.0] - 2025-12-12
-# - Added final_score and mult_breakdown to the scalar output to support
-#   high-fidelity dashboards.
-# [1.4.0] - 2025-12-06
-# - Updated get_time_series_data to populate 'by_mode' and 'by_band_mode'.
-# - Improved groupby logic to handle multi-level aggregation.
-# [1.3.1] - 2025-11-24
-# - Implemented run_points and sp_unk_points logic.
-# - Added band_filter and mode_filter arguments to get_time_series_data.
-# - Enforced strict separation: Points are raw sums, Score is from calculator.
-# [1.2.0] - 2025-11-24
-# - Initial creation implementing the TimeSeriesData v1.2 schema.
 
 import pandas as pd
 import numpy as np

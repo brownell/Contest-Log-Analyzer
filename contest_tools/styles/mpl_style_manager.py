@@ -3,10 +3,6 @@
 # Purpose: Centralized management of Matplotlib styles and color schemes
 #          to ensure consistency across all visual reports.
 #
-# Author: Gemini AI
-# Date: 2025-11-25
-# Version: 1.0.0
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #

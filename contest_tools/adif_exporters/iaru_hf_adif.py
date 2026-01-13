@@ -5,11 +5,6 @@
 #          with N1MM Logger+ by writing specific tags and omitting the <ITUZ>
 #          tag for HQ and Official station contacts.
 #
-#
-# Author: Gemini AI
-# Date: 2025-10-09
-# Version: 0.91.0-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -19,12 +14,6 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-# --- Revision History ---
-# [0.91.0-Beta] - 2025-10-09
-# - Added logic to handle WRTC contest IDs and add a specific
-#   APP_CLA_CONTEST tag for WRTC logs.
-# [0.90.0-Beta] - 2025-10-01
-# Set new baseline version for release.
 
 import pandas as pd
 import numpy as np

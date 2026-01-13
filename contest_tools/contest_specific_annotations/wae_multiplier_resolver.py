@@ -4,10 +4,6 @@
 #          Contest. It implements the asymmetric multiplier rules for
 #          EU vs. non-EU stations and the special call area district logic.
 #
-# Author: Gemini AI
-# Date: 2025-10-07
-# Version: 0.90.4-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -17,21 +13,6 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-# --- Revision History ---
-# [0.90.4-Beta] - 2025-10-07
-# - Implemented correct conditional logic to handle the *IG9 special
-#   case for EU loggers, populating the multiplier from the correct
-#   WAE-specific columns instead of the DXCC columns.
-# [0.90.3-Beta] - 2025-10-07
-# - Added explicit check for WAEPfx == '*IG9' to correctly grant
-#   multiplier credit to EU stations for this special case.
-# - Added filter for WAEName.notna() to ensure only WAE entities can be
-#   counted as multipliers, increasing rules adherence.
-# [0.90.1-Beta] - 2025-10-04
-# - Rewrote logic to correctly apply WAE multiplier rules based on the
-#   logger's location (EU vs. non-EU) and the worked station's Continent.
-# [0.90.0-Beta] - 2025-10-01
-# - Set new baseline version for release.
 
 import pandas as pd
 import re

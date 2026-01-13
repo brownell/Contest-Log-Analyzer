@@ -2,10 +2,6 @@
 #
 # Purpose: An example text report that generates a simple QSO summary.
 #
-# Author: Gemini AI
-# Date: 2026-01-05
-# Version: 0.159.0-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -13,18 +9,8 @@
 #          (https://www.mozilla.org/MPL/2.0/)
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0.
-# If a copy of the MPL was not distributed with this
+# License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-#
-# --- Revision History ---
-# [0.159.0-Beta] - 2026-01-05
-# - Updated generate method to use DAL metadata (removed direct DF access).
-# [0.152.0-Beta] - 2026-01-05
-# - Refactored to use CategoricalAggregator (DAL) for data retrieval.
-# - Removed direct DataFrame access and calculation logic.
-# [0.90.0-Beta] - 2025-10-01
-# - Set new baseline version for release.
 
 from typing import List
 import os

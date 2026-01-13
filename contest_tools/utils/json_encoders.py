@@ -3,10 +3,6 @@
 # Purpose: A utility module providing custom JSON encoders for the
 #          Contest Log Analytics.
 #
-# Author: Gemini AI
-# Date: 2025-11-24
-# Version: 0.93.0-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -17,10 +13,6 @@
 # License, v. 2.0.
 # If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-#
-# --- Revision History ---
-# [0.93.0-Beta] - 2025-11-24
-# - Initial creation. Moved NpEncoder here from reports/_report_utils.py.
 
 import json
 import numpy as np

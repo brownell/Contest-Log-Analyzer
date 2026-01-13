@@ -4,10 +4,6 @@
 #          summary, broken down by band, for multiple logs.
 #          This version serves as a proof-of-concept for using the tabulate library.
 #
-# Author: Gemini AI
-# Date: 2026-01-05
-# Version: 0.158.1-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -15,31 +11,8 @@
 #          (https://www.mozilla.org/MPL/2.0/)
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0.
-# If a copy of the MPL was not distributed with this
+# License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-#
-# --- Revision History ---
-# [0.158.1-Beta] - 2026-01-05
-# - Fixed IndentationError in generate method body.
-# [0.158.0-Beta] - 2026-01-05
-# - Refactored to use `ScoreStatsAggregator` DAL for scoring logic.
-# - Removed internal scoring calculations (`_calculate_totals`, `_calculate_band_mode_summary`).
-# [0.151.1-Beta] - 2026-01-01
-# - Repair import path for report_utils to fix circular dependency.
-# [0.134.1-Beta] - 2025-12-20
-# - Added standard report header generation using `format_text_header`.
-# [0.113.0-Beta] - 2025-12-13
-# - Standardized filename generation: removed '_vs_' separator and applied strict sanitization to callsigns.
-# [0.91.0-Beta] - 2025-10-09
-# - Added support for the 'once_per_band_no_mode' multiplier totaling
-#   method to correctly calculate WRTC scores.
-# [0.90.3-Beta] - 2025-10-05
-# - Corrected scoring logic to sum the `QSOPoints` column instead of
-#   counting all non-dupe QSOs, bringing it into alignment with the
-#   correct logic in `wae_calculator.py`.
-# [0.90.0-Beta] - 2025-10-01
-# - Set new baseline version for release.
 
 from typing import List, Set, Dict, Tuple
 import pandas as pd

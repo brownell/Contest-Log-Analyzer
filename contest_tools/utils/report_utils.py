@@ -3,10 +3,6 @@
 # Purpose: A utility module providing shared helper functions for the
 #          reporting engine.
 #
-# Author: Gemini AI
-# Date: 2026-01-01
-# Version: 0.151.0-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -17,11 +13,6 @@
 # License, v. 2.0.
 # If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-#
-# --- Revision History ---
-# [0.151.0-Beta] - 2026-01-01
-# - Initial creation. Migrated from contest_tools/reports/_report_utils.py.
-# - Added determine_activity_status.
 
 import pandas as pd
 try:

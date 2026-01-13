@@ -2,10 +2,6 @@
 #
 # Purpose: A text report that generates a detailed hourly rate sheet.
 #
-# Author: Gemini AI
-# Date: 2026-01-03
-# Version: 0.151.2-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -13,27 +9,8 @@
 #          (https://www.mozilla.org/MPL/2.0/)
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0.
-# If a copy of the MPL was not distributed with this
+# License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-#
-# --- Revision History ---
-# [0.151.2-Beta] - 2026-01-03
-# - Refactored imports to use absolute path `contest_tools.utils.report_utils` to resolve circular dependencies.
-# [0.134.1-Beta] - 2025-12-20
-# - Added standard report header generation using `format_text_header`.
-# [0.116.0-Beta] - 2025-12-15
-# - Removed usage of get_copyright_footer.
-# [0.115.3-Beta] - 2025-12-15
-# - Added standardized copyright footer.
-# [2.0.1] - 2025-12-06
-# - Fixed IndexError in lookup logic for missing bands/modes.
-# [2.0.0] - 2025-12-06
-# - Refactored to "Drill-Down" layout (Summary + Band Details).
-# - Added Mode columns (CW/PH) to breakdown.
-# - Implemented left-anchored, relative-centered formatting.
-# [0.90.0-Beta] - 2025-10-01
-# - Set new baseline version for release.
 
 from typing import List, Dict, Any
 import pandas as pd

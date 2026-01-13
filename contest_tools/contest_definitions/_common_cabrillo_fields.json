@@ -1,7 +1,5 @@
 {
   "_filename": "contest_tools/contest_definitions/_common_cabrillo_fields.json",
-  "_version": "0.90.0-Beta",
-  "_date": "2025-08-31",
   "cabrillo_version": "3.0",
   "header_field_map": {
     "CALLSIGN": "MyCall",

@@ -2,10 +2,6 @@
 #
 # Purpose: Specialized text report for multiplier breakdown (Group Par).
 #
-# Author: Gemini AI
-# Date: 2025-12-30
-# Version: 0.156.4-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -13,35 +9,8 @@
 #          (https://www.mozilla.org/MPL/2.0/)
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0.
-# If a copy of the MPL was not distributed with this
+# License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-#
-# --- Revision History ---
-# [0.156.4-Beta] - 2025-12-30
-# - Added sub-headers (Wrkd, Uniques, Missed) to station columns.
-# - Changed "Missed" column to show positive integer deficits instead of negative delta.
-# [0.144.0-Beta] - 2025-12-30
-# - Updated `format_row` to display verbose unique breakdown [Run:X S&P:Y Unk:Z].
-# - Increased column width to ~37 chars to accommodate new metrics.
-# [0.142.0-Beta] - 2025-12-29
-# - Implemented dynamic table width calculation for correct header alignment.
-# - Updated column header alignment to center-justified (15 chars) to match data rows.
-# [0.141.1-Beta] - 2025-12-29
-# - Fixed duplicate band header bug.
-# - Refactored column formatting to use fixed-width composite alignment (Count: 6, Spacer: 1, Delta: 7).
-# [0.137.0-Beta] - 2025-12-22
-# - Updated `format_row` helper to display delta values for negative counts.
-# - Increased column width to accommodate delta display.
-# [0.136.4-Beta] - 2025-12-22
-# - Updated `format_row` helper to display delta values for negative counts.
-# - Increased column width to accommodate delta display.
-# [0.136.3-Beta] - 2025-12-22
-# - Reclassified as a standard report (is_specialized = False).
-# - Updated to use standard report interface (generate method).
-# - Corrected data aggregation handling for list-based station stats.
-# [0.136.1-Beta] - 2025-12-20
-# - Initial creation.
 
 import os
 from .report_interface import ContestReport

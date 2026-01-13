@@ -3,11 +3,6 @@
 # Purpose: This module provides the complex, contest-specific time-series
 #          score calculator for the Louisiana QSQ Party (NAQP) Contest.
 #
-#
-# Author: Gemini AI
-# Date: 2025-10-03
-# Version: 0.91.0-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -17,23 +12,6 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-# --- Revision History ---
-# [0.91.0-Beta] - 2025-10-03
-# - Replaced the flawed multiplier counting algorithm with a correct,
-#   vectorized approach to resolve the scoring bug.
-# [0.90.9-Beta] - 2025-10-03
-# - Added comprehensive "during" diagnostic logging for per-band mult counts.
-# [0.90.8-Beta] - 2025-10-03
-# - Added a diagnostic log message to verify module execution and bypass
-#   potential Python caching issues.
-# [0.90.7-Beta] - 2025-10-03
-# - Fixed bug where multipliers were counted for non-NA/KH6 stations. The
-#   calculator now filters for multiplier-eligible QSOs before counting.
-# [0.90.6-Beta] - 2025-10-01
-# - Initial release of the dedicated calculator for NAQP.
-# - Implements the correct scoring logic where the QSO count includes all
-#   valid QSOs (including DX), while the multiplier count is derived only
-#   from multiplier-eligible QSOs (NA + KH6).
 
 import pandas as pd
 import logging

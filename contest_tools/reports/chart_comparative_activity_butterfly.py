@@ -3,10 +3,6 @@
 # Purpose: Generates a comparative 'Butterfly' chart (stacked diverging bars)
 #          visualizing Run vs S&P activity for two stations per band.
 #
-# Author: Gemini AI
-# Date: 2026-01-06
-# Version: 0.159.8-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -18,50 +14,6 @@
 # If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #
-# --- Revision History ---
-# [0.159.8-Beta] - 2026-01-06
-# - Surgical Update: Added JSON artifact generation (fig.write_json) to support
-#   web component rendering in dashboard.
-# [0.159.7-Beta] - 2026-01-06
-# - Surgical Update: Implemented N+1 Row "Header Row" Architecture for clean Legend/Title separation.
-# - Refactored layout to use 'relative' barmode for correct stacking.
-# - Updated Y-axis scaling to account for full stack height (Run+S&P+Unk).
-# - Added dynamic row height calculation (Header=15%).
-# [0.159.6-Beta] - 2026-01-06
-# - Surgical Update: Removed manual footer offset and relocated legend to Top-Right (Legend Belt) to match standard layout.
-# [0.159.5-Beta] - 2026-01-06
-# - Refactored layout to "Top-Bottom Split" pattern: Footer shifted deep (-130), Legend moved to bottom center (-0.15).
-# [0.159.4-Beta] - 2026-01-06
-# - Updated footer to use standard dynamic metadata (CTY version).
-# - Relocated legend to top-right (The Legend Belt) to prevent title overlap.
-# [0.159.3-Beta] - 2026-01-06
-# - Refactored layout application to strictly use PlotlyStyleManager for standardization.
-# - Fixed layout bug where standard layout annotations were overwriting subplot titles (added safe injection loop).
-# - Updated legend positioning to y=1.08 (centered) to prevent overlap with top subplot.
-# - Enforced barmode='overlay' and bargap=0 for correct histogram-style visualization.
-# [0.159.2-Beta] - 2026-01-05
-# - Standardized filename generation: removed '_vs_' separator to match Web Dashboard conventions
-#   and alignment with other comparative reports.
-# [0.159.1-Beta] - 2026-01-05
-# - Configured Plotly ModeBar 'Camera' button to download PNGs with descriptive filenames.
-# [0.158.0-Beta] - 2026-01-05
-# - Removed PNG generation (fig.write_image) to resolve Kaleido dependency issues in web container.
-# [0.157.0-Beta] - 2026-01-04
-# - Refactored to use Plotly for visualization, removing Matplotlib dependency.
-# [0.151.1-Beta] - 2026-01-01
-# - Repair import path for report_utils to fix circular dependency.
-# [0.151.0-Beta] - 2026-01-01
-# - Refactored imports to use `contest_tools.utils.report_utils` to break circular dependency.
-# [1.0.2] - 2025-12-06
-# - Fixed output directory pathing issue where charts were saved to a nested
-#   'charts/charts' directory.
-#   Now saves directly to the provided output_path.
-# [1.0.1] - 2025-12-06
-# - Updated color palette to Blue (S&P) / Green (Run) / Grey (Unknown) to match
-#   standard breakdown charts.
-# [1.0.0] - 2025-12-06
-# - Initial creation implementing the Stacked Butterfly Chart.
-
 import os
 import logging
 import math

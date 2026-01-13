@@ -2,11 +2,15 @@
 #
 # Purpose: Provides the custom multiplier resolver for the WRTC contest series.
 #
-# Author: Gemini AI
-# Date: 2025-10-10
-# Version: 0.91.12-Beta
+# Copyright (c) 2025 Mark Bailey, KD4D
+# Contact: kd4d@kd4d.org
 #
 # License: Mozilla Public License, v. 2.0
+#          (https://www.mozilla.org/MPL/2.0/)
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import pandas as pd
 from typing import Dict, Any, Optional

@@ -1,7 +1,5 @@
 {
   "_filename": "contest_tools/contest_definitions/iaru_hf.json",
-  "_version": "0.91.16-Beta",
-  "_date": "2025-10-10",
   "contest_name": "IARU-HF",
   "scoring_module": "iaru_hf_scoring",
   "contest_period": {

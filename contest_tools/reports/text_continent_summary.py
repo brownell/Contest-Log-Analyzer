@@ -3,10 +3,6 @@
 # Purpose: A text report that generates a summary of QSOs per continent,
 #          broken down by band for multiple logs.
 #
-# Author: Gemini AI
-# Date: 2026-01-05
-# Version: 0.152.0-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -14,18 +10,8 @@
 #          (https://www.mozilla.org/MPL/2.0/)
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0.
-# If a copy of the MPL was not distributed with this
+# License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-#
-# --- Revision History ---
-# [0.152.0-Beta] - 2026-01-05
-# - Refactored to use CategoricalAggregator (DAL) for data retrieval.
-# - Removed direct DataFrame access and pivot logic.
-# [0.134.1-Beta] - 2025-12-20
-# - Added standard report header generation using `format_text_header`.
-# [0.90.0-Beta] - 2025-10-01
-# - Set new baseline version for release.
 
 from typing import List
 import pandas as pd

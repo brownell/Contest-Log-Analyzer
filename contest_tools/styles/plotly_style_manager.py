@@ -3,10 +3,6 @@
 # Purpose: Centralized management of Plotly styles and color schemes
 #          to ensure consistency across all interactive visual reports.
 #
-# Author: Gemini AI
-# Date: 2025-12-28
-# Version: 0.143.2-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -18,27 +14,6 @@
 # If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #
-# --- Revision History ---
-# [0.143.2-Beta] - 2025-12-28
-# - Tuned "Legend Belt" spacing: Increased top/bottom margins (130/160px) and lifted title (yshift=90).
-# [0.143.1-Beta] - 2025-12-28
-# - Updated yshift to 65px for title annotations to create the "Legend Belt".
-# [0.143.0-Beta] - 2025-12-28
-# - Updated get_standard_layout to support polymorphic titles (str or List[str]).
-# - Implemented Annotation Stack strategy for precise title spacing.
-# [0.133.4-Beta] - 2025-12-20
-# - Implemented absolute pixel positioning (yshift) for footer annotations to prevent overlap.
-# - Adjusted bottom margin to 140px.
-# [0.133.3-Beta] - 2025-12-20
-# - Increased bottom margin to 160px and lowered footer to -0.35 to prevent overlap.
-# [0.133.2-Beta] - 2025-12-20
-# - Adjusted bottom margin and footer position to prevent overlap in dashboards.
-# [1.1.0] - 2025-12-20
-# - Added footer_text support to `get_standard_layout` for branding/metadata.
-# [1.0.0] - 2025-12-07
-# - Initial creation to support Phase 2 Visualization Standardization.
-# - Implemented color map generators and standard layout factories.
-
 from typing import Dict, List, Any, Union
 import plotly.graph_objects as go
 

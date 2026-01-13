@@ -3,10 +3,6 @@
 # Purpose: Scrapes public contest log archives (starting with CQ WW) to provide
 #          a searchable index and on-demand file downloading.
 #
-# Author: Gemini AI
-# Date: 2025-12-18
-# Version: 0.126.0-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -16,10 +12,6 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-#
-# --- Revision History ---
-# [0.126.0-Beta] - 2025-12-18
-# - Initial creation. Implements fetch_log_index and download_logs for CQ WW.
 
 import requests
 from bs4 import BeautifulSoup

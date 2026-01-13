@@ -3,10 +3,6 @@
 # Purpose: This module provides a detailed score summary for the WAE
 #          contest, including QTC points and weighted multipliers.
 #
-# Author: Gemini AI
-# Date: 2026-01-05
-# Version: 0.161.0-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -14,28 +10,8 @@
 #          (https://www.mozilla.org/MPL/2.0/)
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0.
-# If a copy of the MPL was not distributed with this
+# License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-#
-# --- Revision History ---
-# [0.161.0-Beta] - 2026-01-05
-# - Removed direct DataFrame access and Debug Data block to decouple from raw log data.
-# - Refactored `modes_present` derivation to use aggregator output.
-# [0.151.2-Beta] - 2026-01-03
-# - Refactored imports to use absolute path `contest_tools.utils.report_utils` to resolve circular dependencies.
-# [0.134.1-Beta] - 2025-12-20
-# - Added standard report header generation using `format_text_header`.
-# [0.91.4-Beta] - 2025-11-24
-# - Refactored to use WaeStatsAggregator (DAL) for scoring logic.
-# [0.91.3-Beta] - 2025-10-10
-# - Marked report as specialized to enable the new opt-in logic.
-# [0.90.2-Beta] - 2025-10-05
-# - Corrected scoring logic to sum the `QSOPoints` column instead of
-#   counting all non-dupe QSOs, bringing it into alignment with the
-#   correct logic in `wae_calculator.py`.
-# [0.90.0-Beta] - 2025-10-01
-# - Set new baseline version for release.
 
 from typing import List, Dict, Any
 import pandas as pd

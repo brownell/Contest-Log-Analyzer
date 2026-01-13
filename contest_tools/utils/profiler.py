@@ -3,10 +3,6 @@
 # Purpose: Performance profiling utilities for measuring execution time
 #          of critical code paths when CLA_PROFILE=1 is set.
 #
-# Author: Gemini AI
-# Date: 2026-01-07
-# Version: 0.160.0-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -17,10 +13,6 @@
 # License, v. 2.0.
 # If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-#
-# --- Revision History ---
-# [0.160.0-Beta] - 2026-01-07
-# - Initial creation of performance profiling infrastructure.
 
 import time
 import os

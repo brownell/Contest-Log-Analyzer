@@ -1,7 +1,5 @@
 {
   "_filename": "contest_tools/contest_definitions/arrl_fd.json",
-  "_version": "0.91.11-Beta",
-  "_date": "2025-10-10",
   "contest_name": "ARRL-FIELD-DAY",
   "scoring_module": "arrl_fd_scoring",
   "contest_period": {

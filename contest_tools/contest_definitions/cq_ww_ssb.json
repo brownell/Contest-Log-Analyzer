@@ -1,7 +1,5 @@
 {
   "_filename": "contest_tools/contest_definitions/cq_ww_ssb.json",
-  "_version": "0.91.11-Beta",
-  "_date": "2025-10-10",
   "contest_name": "CQ-WW-SSB",
   "scoring_module": "cq_ww_scoring",
   "mults_from_zero_point_qsos": true,

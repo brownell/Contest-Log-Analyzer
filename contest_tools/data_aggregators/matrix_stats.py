@@ -2,10 +2,6 @@
 #
 # Purpose: Centralizes the calculation logic for 2D matrix statistics (Band x Time).
 #
-# Author: Gemini AI
-# Date: 2026-01-01
-# Version: 0.149.1-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -13,18 +9,8 @@
 #          (https://www.mozilla.org/MPL/2.0/)
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0.
-# If a copy of the MPL was not distributed with this
+# License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-#
-# --- Revision History ---
-# [0.149.1-Beta] - 2026-01-01
-# - Updated import path for `get_valid_dataframe` and `determine_activity_status` to
-#   use new `utils` location to resolve circular dependency.
-# [0.149.0-Beta] - 2026-01-01
-# - Refactored to use centralized `determine_activity_status` utility.
-# [0.134.0-Beta] - 2025-12-25
-# - Initial creation.
 import pandas as pd
 import numpy as np
 from typing import List, Dict, Any, Optional

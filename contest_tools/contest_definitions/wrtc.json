@@ -1,7 +1,5 @@
 {
   "_filename": "contest_tools/contest_definitions/wrtc.json",
-  "_version": "0.92.3-Beta",
-  "_date": "2025-10-12",
   "contest_name": "WRTC",
   "time_series_calculator": "wrtc_calculator",
   "custom_multiplier_resolver": "wrtc_multiplier_resolver",

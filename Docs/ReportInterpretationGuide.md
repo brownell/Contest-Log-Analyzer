@@ -277,13 +277,13 @@ It shows whether those common QSOs were logged as "Run" by both, "S&P" by both, 
 However, large red segments (**Unique Run** QSOs) would reinforce that they were successfully running different sets of stations.
 ---
 
-### Point Contribution Breakdown (`chart_point_contribution` & `chart_point_contribution_single`)
+### Point Contribution Breakdown (`chart_point_contribution`)
 
-**Supports**: `chart_point_contribution_single` (single-log), `chart_point_contribution` (multi-log)
+**Supports**: Single-log only
 
 This chart shows where your points came from.
 For CQ WW, for example, points are awarded based on the continent of the station worked.
-The `_single` version shows a per-band breakdown for one log, while the main version compares multiple logs.
+It shows a per-band breakdown for one log, displaying pie charts for each band showing the proportion of points from each point value (1-point, 3-point, etc.).
 #### How to Interpret This Chart
 
 * **Pie Chart**: The slices show the proportion of total points that came from each point value.

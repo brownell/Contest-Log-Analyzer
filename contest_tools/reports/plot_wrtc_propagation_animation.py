@@ -4,10 +4,6 @@
 #          analysis, creating a side-by-side butterfly chart for each hour of
 #          the contest.
 #
-# Author: Gemini AI
-# Date: 2026-01-05
-# Version: 0.159.1-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -18,31 +14,7 @@
 # License, v. 2.0.
 # If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-#
-# --- Revision History ---
-# [0.159.1-Beta] - 2026-01-05
-# - Configured Plotly ModeBar 'Camera' button to download PNGs with descriptive filenames.
-# [0.157.0-Beta] - 2026-01-04
-# - Refactored to use Plotly for HTML-based animation, removing ffmpeg/imageio dependency.
-# - Implemented Play/Pause buttons and Time Slider using Plotly Frames.
-# - Changed report type to 'animation' (HTML output).
-# [0.151.1-Beta] - 2026-01-01
-# - Repair import path for report_utils to fix circular dependency.
-# [0.151.0-Beta] - 2026-01-01
-# - Refactored imports to use `contest_tools.utils.report_utils` to break circular dependency.
-# [0.92.7-Beta] - 2025-10-12
-# - Changed figure height to 11.04 inches to produce a 2000x1104 pixel
-#   image, resolving the ffmpeg macro_block_size warning.
-# [0.92.6-Beta] - 2025-10-12
-# - Fixed AttributeError by changing `set_ticks` to the correct `set_xticks` method.
-# [0.92.5-Beta] - 2025-10-12
-# - Fixed UserWarning by explicitly setting fixed ticks before applying custom labels.
-# [0.92.4-Beta] - 2025-10-12
-# - Modified report to save individual animation frames to a permanent
-#   `propagation` subdirectory instead of deleting them.
-# [0.92.3-Beta] - 2025-10-12
-# - Initial creation of the animation report based on the static
-#   wrtc_propagation plot.
+
 import os
 import logging
 from typing import List, Dict, Any

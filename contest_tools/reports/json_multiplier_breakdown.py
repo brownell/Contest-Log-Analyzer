@@ -3,10 +3,6 @@
 # Purpose: Generates a machine-readable JSON artifact of the Multiplier Breakdown.
 #          This serves as a high-speed cache for the web dashboard.
 #
-# Author: Gemini AI
-# Date: 2026-01-01
-# Version: 0.151.1-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -17,25 +13,6 @@
 # License, v. 2.0.
 # If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-#
-# --- Revision History ---
-# [0.151.1-Beta] - 2026-01-01
-# - Repair import path for report_utils to fix circular dependency.
-# [0.151.0-Beta] - 2026-01-01
-# - Refactored imports to use `contest_tools.utils.report_utils` to break circular dependency.
-# [0.131.1-Beta] - 2025-12-23
-# - Enable single-log support.
-# [0.138.7-Beta] - 2025-12-22
-# - Fixed NameError by removing stray syntax artifacts.
-# [0.138.3-Beta] - 2025-12-22
-# - Fixed JSON Report Path Doubling.
-# [0.138.2-Beta] - 2025-12-22
-# - Fixed signature to match ReportGenerator interface.
-# - Refactored NpEncoder to shared utility.
-# [0.138.1-Beta] - 2025-12-22
-# - Fixed ImportError by updating ContestReport import path.
-# [0.138.0-Beta] - 2025-12-22
-# - Initial creation.
 
 import json
 import os

@@ -4,10 +4,6 @@
 #          and extract log metadata. It uses a ContestDefinition object to guide
 #          the parsing of contest-specific header fields and QSO exchange formats.
 #
-# Author: Gemini AI
-# Date: 2025-10-01
-# Version: 0.90.0-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -17,9 +13,6 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-# --- Revision History ---
-# [0.90.0-Beta] - 2025-10-01
-# Set new baseline version for release.
 
 import re
 import pandas as pd

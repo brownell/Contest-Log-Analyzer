@@ -3,10 +3,6 @@
 # Purpose: A plot report that generates a "paired timeline" chart, visualizing
 #          the operating style (Run, S&P, or Mixed) of two operators over time.
 #
-# Author: Gemini AI
-# Date: 2026-01-05
-# Version: 0.159.0-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -17,34 +13,7 @@
 # License, v. 2.0.
 # If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-#
-# --- Revision History ---
-# [0.159.0-Beta] - 2026-01-05
-# - Disabled PNG generation logic (Kaleido dependency removal) for Web Architecture.
-# [0.151.1-Beta] - 2026-01-01
-# - Repair import path for report_utils to fix circular dependency.
-# [0.151.0-Beta] - 2026-01-01
-# - Refactored imports to use `contest_tools.utils.report_utils` to break circular dependency.
-# [1.3.1-Beta] - 2025-12-20
-# - Refactored to use `get_standard_title_lines` for standardized 3-line headers.
-# - Implemented explicit "Smart Scoping" for title generation.
-# - Added footer metadata via `get_cty_metadata`.
-# [1.3.0] - 2025-12-15
-# - Injected descriptive filename configuration for interactive HTML plot downloads.
-# [1.2.0] - 2025-12-10
-# - Added CLI entry point (argparse) for standalone execution.
-# - Updated documentation to reflect CLI usage.
-# [1.1.1] - 2025-12-10
-# - Fixed Legend Visibility Bug: Replaced opacity=0 hack with empty-data traces to ensure
-#   legend markers remain visible.
-# [1.1.0] - 2025-12-10
-# - Migrated visualization engine from Matplotlib to Plotly (Phase 2).
-# - Implemented Discrete Heatmap strategy for timeline visualization.
-# - Added HTML export capability.
-# [1.0.0] - 2025-11-24
-# - Refactored to use MatrixAggregator (DAL).
-# [0.90.0-Beta] - 2025-10-01
-# - Set new baseline version for release.
+
 import pandas as pd
 import numpy as np
 import plotly.graph_objects as go

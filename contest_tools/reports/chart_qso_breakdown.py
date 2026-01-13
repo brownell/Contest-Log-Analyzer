@@ -3,10 +3,6 @@
 # Purpose: A chart report that generates a stacked bar chart comparing two logs
 #          on common/unique QSOs broken down by Run vs. Search & Pounce (S&P) mode.
 #
-# Author: Gemini AI
-# Date: 2026-01-05
-# Version: 0.159.0-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -18,96 +14,6 @@
 # If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #
-# --- Revision History ---
-# [0.159.0-Beta] - 2026-01-05
-# - Disabled PNG generation logic (Kaleido dependency removal) for Web Architecture.
-# [0.158.0-Beta] - 2026-01-05
-# - Removed PNG generation (fig.write_image) to resolve Kaleido dependency issues in web container.
-# [0.151.3-Beta] - 2026-01-03
-# - Refactored imports to use contest_tools.utils.report_utils to break circular dependency.
-# [0.151.1-Beta] - 2026-01-01
-# - Repair import path for report_utils to fix circular dependency.
-# [0.151.0-Beta] - 2026-01-01
-# - Refactored imports to use `contest_tools.utils.report_utils` to break circular dependency.
-# [Phase 1 (Pathfinder)] - 2025-12-29
-# - Added JSON export functionality for web component integration.
-# [0.147.0-Beta] - 2025-12-29
-# - Swapped generation order: HTML (Fluid) is now generated before PNG (Fixed) to prevent state leakage.
-# [0.145.0-Beta] - 2025-12-29
-# - Removed manual layout overrides (margins) to allow PlotlyStyleManager authoritative control.
-# [0.144.1-Beta] - 2025-12-29
-# - Implemented "Hard Deck" strategy: Fixed height (800px), autosize=True, disabled 'responsive' config.
-# [0.143.3-Beta] - 2025-12-28
-# - Implemented "Safety Gap" strategy: Reduced HTML height to 800px to prevent scrollbars.
-# [0.143.2-Beta] - 2025-12-28
-# - Fixed HTML viewport issue by enforcing fixed height (850px).
-# [0.143.1-Beta] - 2025-12-28
-# - Updated layout configuration to use the "Legend Belt" strategy (Protocol 1.2.0).
-# - Migrated title generation to pass List[str] for Annotation Stack rendering.
-# [0.143.0-Beta] - 2025-12-28
-# - Migrated title generation to PlotlyStyleManager annotation stack ("Pixel-Locked Margins").
-# - Relocated legend to inside the plot area to reclaim vertical space.
-# - Removed manual top margin override to fix scrollbar overflow regression.
-# [0.142.0-Beta] - 2025-12-27
-# - Increased subplot vertical_spacing to 0.15 to prevent label overlap.
-# - Reduced X-axis title_standoff to 5 to tighten Band Label placement.
-# - Increased bottom margin to 60px to accommodate labels.
-# [0.141.0-Beta] - 2025-12-25
-# - Removed floating subplot titles to eliminate overlap.
-# - Added x-axis titles to subplots for clearer band identification.
-# - Reduced vertical spacing to 0.05 and adjusted margins (t=100, b=40).
-# [0.140.0-Beta] - 2025-12-25
-# - Optimized layout margins (t=90, b=70) to balance title clearance vs footer visibility.
-# - Increased subplot vertical spacing to 0.08 to prevent title collision.
-# [0.137.0-Beta] - 2025-12-25
-# - Implemented "Safe Zone" layout strategy with increased margins (t=120, b=50, l=50, r=50)
-#   for dashboard integration to prevent overlap.
-# [0.136.0-Beta] - 2025-12-25
-# - Optimized layout for dashboard integration ("Fill the Viewport"):
-#   - Migrated band labels to subplot titles for better association.
-#   - Reduced vertical spacing between subplots to 0.05.
-#   - Tightened HTML layout margins (t=60, b=30, l=10, r=10).
-# [0.135.0-Beta] - 2025-12-25
-# - Forced removal of fixed dimensions for HTML output using direct attribute assignment.
-# - Optimized margins (t=100, b=40) for dashboard integration.
-# [0.134.0-Beta] - 2025-12-25
-# - Reverted vertical spacing to 0.12 to accommodate X-axis labels.
-# - Restored standard X-axis labels (Band Name) and removed in-chart badges.
-# [0.133.0-Beta] - 2025-12-25
-# - Replaced external subplot titles with in-chart badges to save vertical space.
-# - Reduced subplot vertical spacing.
-# [0.132.0-Beta] - 2025-12-25
-# - Increased subplot vertical spacing to 0.15.
-# - Added explicit X-axis labels (Band Name) to each subplot.
-# - Enabled responsive resizing for HTML dashboard integration.
-# [0.131.1-Beta] - 2025-12-25
-# - Updated band sorting logic to use canonical frequency order via ContestLog._HAM_BANDS.
-# [0.131.0-Beta] - 2025-12-20
-# - Refactored to use `get_standard_title_lines` for standardized 3-line headers.
-# - Implemented explicit "Smart Scoping" for title generation.
-# - Added footer metadata via `get_cty_metadata`.
-# [0.118.0-Beta] - 2025-12-15
-# - Injected descriptive filename configuration for interactive HTML plot downloads.
-# [0.115.2-Beta] - 2025-12-15
-# - Increased top margin to 140px to prevent the two-line header from overlapping subplot titles.
-# [0.115.1-Beta] - 2025-12-15
-# - Standardized chart header to the two-line format (Report Name + Context).
-# - Optimized x-axis labels ("Unique Call" -> "Call", "Common (Both)" -> "Common")
-#   to prevent overlapping text in the 3-column layout.
-# [1.0.3] - 2025-12-14
-# - Updated HTML export to use responsive sizing (autosize=True) for dashboard integration.
-# - Maintained fixed resolution for PNG exports.
-# [1.0.2] - 2025-12-14
-# - Updated file generation to use `_sanitize_filename_part` for strict lowercase naming.
-# [1.0.1] - 2025-12-08
-# - Updated PNG output to use landscape orientation (width=1600px).
-# [1.0.0] - 2025-12-08
-# - Migrated visualization engine from Matplotlib to Plotly.
-# - Added interactive HTML output support.
-# - Applied standard Phase 2 styling via PlotlyStyleManager.
-# [0.93.7-Beta] - 2025-12-04
-# - Fixed runtime crash by ensuring the output directory is created before
-#   saving the chart file.
 import os
 from typing import List, Dict, Tuple
 import pandas as pd

@@ -3,10 +3,6 @@
 # Purpose: This class manages the session-scoped manifest of generated artifacts.
 #          It decouples the generation of reports from their discovery by the UI.
 #
-# Author: Gemini AI
-# Date: 2025-12-20
-# Version: 0.134.1-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -17,13 +13,6 @@
 # License, v. 2.0.
 # If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-#
-# --- Revision History ---
-# [0.134.1-Beta] - 2026-01-01
-# - Added deterministic sorting to `save()` method to ensure consistent
-#   manifest output order.
-# [0.134.0-Beta] - 2025-12-20
-# - Initial creation.
 
 import os
 import json

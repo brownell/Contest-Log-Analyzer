@@ -3,10 +3,6 @@
 # Purpose: A text report that generates a breakdown of QSOs by continent
 #          for each band, utilizing the CategoricalAggregator.
 #
-# Author: Gemini AI
-# Date: 2026-01-04
-# Version: 0.151.2-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -14,24 +10,8 @@
 #          (https://www.mozilla.org/MPL/2.0/)
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0.
-# If a copy of the MPL was not distributed with this
+# License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-#
-# --- Revision History ---
-# [0.151.2-Beta] - 2026-01-04
-# - Updated to use stateless CategoricalAggregator and get_category_breakdown method.
-# - Added safety check for empty data.
-# [0.151.1-Beta] - 2026-01-01
-# - Repair import path for report_utils to fix circular dependency.
-# [0.151.0-Beta] - 2026-01-01
-# - Refactored imports to use `contest_tools.utils.report_utils` to break circular dependency.
-# [0.134.1-Beta] - 2025-12-20
-# - Added standard report header generation using `format_text_header`.
-# [0.131.1-Beta] - 2025-12-23
-# - Enable single-log support.
-# [0.134.0-Beta] - 2025-12-20
-# - Initial creation using CategoricalAggregator (DAL).
 
 import os
 from tabulate import tabulate

@@ -4,10 +4,6 @@
 #          comparison of QSO counts (Total, Unique, Common) between two logs,
 #          broken down by band and Run/S&P status.
 #
-# Author: Gemini AI
-# Date: 2026-01-05
-# Version: 0.153.0-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -15,22 +11,8 @@
 #          (https://www.mozilla.org/MPL/2.0/)
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0.
-# If a copy of the MPL was not distributed with this
+# License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-#
-# --- Revision History ---
-# [0.153.0-Beta] - 2026-01-05
-# - Refactored to use CategoricalAggregator (DAL) for data retrieval.
-# - Removed direct DataFrame access and set logic.
-# [0.134.0-Beta] - 2025-12-20
-# - Standardized report header to use `_report_utils`.
-# [0.90.1-Beta] - 2025-12-06
-# Refactored report to show Run/S&P/Unknown breakdown for Common QSOs.
-# Updated table layout with scoped super-headers.
-#
-# [0.90.0-Beta] - 2025-10-01
-# Set new baseline version for release.
 
 from .report_interface import ContestReport
 from contest_tools.utils.report_utils import create_output_directory, format_text_header, get_cty_metadata, get_standard_title_lines

@@ -2,11 +2,6 @@
 #
 # Purpose: This module provides the base QSO scoring logic for the WAE Contest.
 #
-#
-# Author: Gemini AI
-# Date: 2025-10-07
-# Version: 0.90.4-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -16,16 +11,6 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-# --- Revision History ---
-# [0.90.4-Beta] - 2025-10-07
-# - Added explicit check for WAEPfx == '*IG9' to correctly deny QSO
-#   credit to DX stations, making the rule robust and not reliant on
-#   continent data side-effects.
-# [0.90.1-Beta] - 2025-10-04
-# - Rewrote scoring logic to correctly award 0 points for invalid QSOs
-#   (e.g., EU-to-EU) based on the WAE contest rules.
-# [0.90.0-Beta] - 2025-10-01
-# - Set new baseline version for release.
 
 import pandas as pd
 from typing import Dict, Any

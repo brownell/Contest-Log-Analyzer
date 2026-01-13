@@ -3,10 +3,6 @@
 # Purpose: A text report that generates a detailed score summary for each
 #          log, broken down by band.
 #
-# Author: Gemini AI
-# Date: 2026-01-05
-# Version: 0.160.0-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -14,43 +10,8 @@
 #          (https://www.mozilla.org/MPL/2.0/)
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0.
-# If a copy of the MPL was not distributed with this
+# License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-#
-# --- Revision History ---
-# [0.160.0-Beta] - 2026-01-05
-# - Updated to use `get_diagnostic_stats` from aggregator.
-# - Removed raw DataFrame processing logic from diagnostic sections.
-# [0.158.1-Beta] - 2026-01-05
-# - Fixed IndentationError in generate method body.
-# [0.158.0-Beta] - 2026-01-05
-# - Refactored to use `ScoreStatsAggregator` DAL for scoring logic.
-# - Removed internal scoring calculations and direct pandas dependencies.
-# [0.151.2-Beta] - 2026-01-03
-# - Refactored imports to use absolute path `contest_tools.utils.report_utils` to resolve circular dependencies.
-# [0.130.0-Beta] - 2025-12-20
-# - Refactored to use `format_text_header` for standardized 3-line titles.
-# - Integrated `get_cty_metadata` for provenance tracking.
-# [0.125.0-Beta] - 2025-12-17
-# - Updated import to use contest_tools.utils.pivot_utils for calculate_multiplier_pivot.
-# [0.116.0-Beta] - 2025-12-15
-# - Removed usage of get_copyright_footer.
-# [0.115.3-Beta] - 2025-12-15
-# - Added standardized copyright footer.
-# [0.92.0-Beta] - 2025-12-06
-# - Refactored score summary to use a hierarchical layout (Band -> Mode).
-# - Implemented strict multiplier counts per mode row, with an 'ALL' summary row
-#   showing the band total union.
-# [0.91.0-Beta] - 2025-10-09
-# - Added support for the 'once_per_band_no_mode' multiplier totaling
-#   method to correctly calculate WRTC scores.
-# [0.90.3-Beta] - 2025-10-05
-# - Corrected scoring logic to sum the `QSOPoints` column instead of
-#   counting all non-dupe QSOs, bringing it into alignment with the
-#   correct logic in `wae_calculator.py`.
-# [0.90.0-Beta] - 2025-10-01
-# - Set new baseline version for release.
 
 from typing import List, Dict, Set, Tuple
 import pandas as pd

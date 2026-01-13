@@ -3,10 +3,6 @@
 # Purpose: A text report that generates a side-by-side comparison of QSO counts
 #          by continent for two logs.
 #
-# Author: Gemini AI
-# Date: 2026-01-05
-# Version: 0.162.0-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -14,21 +10,8 @@
 #          (https://www.mozilla.org/MPL/2.0/)
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0.
-# If a copy of the MPL was not distributed with this
+# License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-#
-# --- Revision History ---
-# [0.162.0-Beta] - 2026-01-05
-# - Standardized filename generation to remove `_vs_` separator.
-# [0.151.1-Beta] - 2026-01-01
-# - Repair import path for report_utils to fix circular dependency.
-# [0.151.0-Beta] - 2026-01-01
-# - Refactored imports to use `contest_tools.utils.report_utils` to break circular dependency.
-# [0.134.1-Beta] - 2025-12-22
-# - Corrected method signature for `generate` to match Interface (added `**kwargs`).
-# [0.134.0-Beta] - 2025-12-22
-# - Initial creation.
 
 import os
 from typing import List, Dict

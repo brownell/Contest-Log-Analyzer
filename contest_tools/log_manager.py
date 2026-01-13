@@ -6,10 +6,6 @@
 #          It serves as the primary entry point for the core
 #          analysis engine.
 #
-# Author: Gemini AI
-# Date: 2026-01-07
-# Version: 0.160.0-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -20,60 +16,6 @@
 # License, v. 2.0.
 # If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-#
-# --- Revision History ---
-# [0.160.0-Beta] - 2026-01-07
-# - Added performance profiling instrumentation when CLA_PROFILE=1.
-# [0.141.0-Beta] - 2025-12-29
-# - Implemented strict, case-insensitive alphabetical sorting of logs in
-#   load_log_batch to ensure deterministic processing order.
-#
-# [0.131.1-Beta] - 2025-12-23
-# - Refactored pre-flight validation to check every log for duplicate callsigns
-#   and missing QSO data.
-# - Updated consistency checks to enforce matching Contest, Year, and Event ID.
-# - Updated `_get_first_qso_date_from_log` to return None on failure/empty,
-#   allowing for safer CTY date resolution.
-#
-# [0.113.1-Beta] - 2025-12-14
-# - Enforced strict lowercase standards for report directory creation to ensure
-#   cross-platform compatibility (Linux/Windows).
-#
-# [0.91.6-Beta] - 2025-12-10
-# - Removed the "Hourly ADIF Debug File Generation" block from finalize_loading
-#   to disable the creation of partial ADIF files in the Debug/ directory.
-#
-# [0.91.5-Beta] - 2025-10-09
-# - Removed obsolete warning suppression logic for hourly ADIF files and
-#   updated the `export_to_adif` call to pass a new context parameter.
-#
-# [0.91.3-Beta] - 2025-10-09
-# - No functional changes. Synchronizing version number with `__init__.py`
-#   for a consolidated bugfix release.
-#
-# [0.91.2-Beta] - 2025-10-09
-# - Fixed latent bug in _create_master_time_index by changing ceil('h')
-#   to floor('h') to prevent creation of an extra, empty hour.
-#
-# [0.91.1-Beta] - 2025-10-09
-# - Fixed regression by restoring the implicit generic/specific file loading
-#   logic as a fallback for definitions that do not use "inherits_from".
-#
-# [0.91.0-Beta] - 2025-10-09
-# - Added logic to `load_log_batch` to handle the `--wrtc` flag, allowing
-#   IARU-HF logs to be scored with a specific WRTC ruleset.
-#
-# [0.90.8-Beta] - 2025-10-06
-# - Added Excel-compatible text formatting to the `QTC_GRP` column in the WAE QTC CSV export.
-#
-# [0.90.7-Beta] - 2025-10-06
-# - Added logic to `finalize_loading` to export a `_qtcs.csv` file for WAE logs.
-#
-# [0.90.6-Beta] - 2025-10-05
-# - Added logic to `finalize_loading` to generate hourly ADIF debug files when `--debug-data` is enabled.
-#
-# [0.90.0-Beta] - 2025-10-01
-# Set new baseline version for release.
 
 import pandas as pd
 from typing import List, Optional, Set

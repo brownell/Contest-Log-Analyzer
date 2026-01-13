@@ -3,10 +3,6 @@
 # Purpose: A plot report that generates a cumulative difference graph,
 #          comparing two logs, with superimposed lines for Total, Run, S&P, and Unknown.
 #
-# Author: Gemini AI
-# Date: 2026-01-05
-# Version: 0.159.0-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -17,67 +13,7 @@
 # License, v. 2.0.
 # If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-#
-# --- Revision History ---
-# [0.159.0-Beta] - 2026-01-05
-# - Disabled PNG generation logic (Kaleido dependency removal) for Web Architecture.
-# [0.151.1-Beta] - 2026-01-01
-# - Repair import path for report_utils to fix circular dependency.
-# [0.151.0-Beta] - 2026-01-01
-# - Refactored imports to use `contest_tools.utils.report_utils` to break circular dependency.
-# [Phase 1 (Layout & Data Fix)] - 2025-12-29
-# - Converted Pandas Series to lists in Plotly traces to fix serialization bug.
-# [Phase 1 (Pathfinder)] - 2025-12-29
-# - Added JSON export functionality for web component integration.
-# [0.145.0-Beta] - 2025-12-29
-# - Removed manual layout overrides (margins) to allow PlotlyStyleManager authoritative control.
-# [0.144.1-Beta] - 2025-12-29
-# - Implemented "Hard Deck" strategy: Fixed height (800px), autosize=True, disabled 'responsive' config.
-# [0.143.3-Beta] - 2025-12-28
-# - Implemented "Safety Gap" strategy: Reduced HTML height to 800px to prevent scrollbars.
-# [0.143.2-Beta] - 2025-12-28
-# - Fixed HTML viewport issue by enforcing fixed height (850px).
-# [0.143.1-Beta] - 2025-12-28
-# - Updated layout configuration to use the "Legend Belt" strategy (Protocol 1.2.0).
-# [0.143.0-Beta] - 2025-12-28
-# - Updated to use PlotlyStyleManager Annotation Stack for title rendering.
-# - Moved legend to top-left inside plot area to prevent overlap.
-# - Restored truncated methods (_orchestrate_plot_generation, generate).
-# [0.142.2-Beta] - 2025-12-28
-# - Implemented Annotation Stack for precise title spacing control (Protocol 1.2.0).
-# - Replaced Plotly standard title with manual layout annotations.
-# [0.142.1-Beta] - 2025-12-28
-# - Updated title formatting to use span tags with inline styles for better spacing control.
-# - Relocated legend to top-left corner inside the plot area to prevent title overlap.
-# [0.133.0-Beta] - 2025-12-20
-# - Refactored `_generate_single_plot` to use centralized `build_filename` utility.
-# - Standardized filename format to match other reports.
-# [0.131.0-Beta] - 2025-12-20
-# - Refactored to use `get_standard_title_lines` for standardized 3-line headers.
-# - Implemented explicit "Smart Scoping" for title generation.
-# - Added footer metadata via `get_cty_metadata`.
-# [0.118.0-Beta] - 2025-12-15
-# - Injected descriptive filename configuration for interactive HTML plot downloads.
-# [0.115.0-Beta] - 2025-12-14
-# - Consolidated 3-subplot layout into a single chart with superimposed lines
-#   (Total, Run, S&P, Unknown) for better readability and vertical resolution.
-# [0.114.0-Beta] - 2025-12-14
-# - Updated HTML export to use responsive sizing (autosize=True) for dashboard integration.
-# - Maintained fixed 1600x900 resolution for PNG exports.
-# [0.113.0-Beta] - 2025-12-13
-# - Standardized filename generation: removed '_vs_' separator to match Web Dashboard conventions.
-# [1.1.2] - 2025-12-14
-# - Updated file generation to use `_sanitize_filename_part` for strict lowercase naming.
-# [1.1.1] - 2025-12-10
-# - Fixed visualization bug: Increased top margin to prevent Main Title/Subplot Title overlap.
-# [1.1.0] - 2025-12-10
-# - Migrated visualization engine to Plotly (Dual Output: PNG + HTML).
-# - Implemented PlotlyStyleManager for standardized styling.
-# [1.0.0] - 2025-11-24
-# - Refactored to use Data Abstraction Layer (TimeSeriesAggregator).
-# - Enabled Run/S&P plots for Points metric via 'run_points' schema.
-# [0.90.0-Beta] - 2025-10-01
-# - Set new baseline version for release.
+
 from typing import List
 import pandas as pd
 import plotly.graph_objects as go

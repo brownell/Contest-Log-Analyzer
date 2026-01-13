@@ -3,11 +3,6 @@
 # Purpose: This module provides the complex, contest-specific time-series
 #          score calculator for the Worked All Europe (WAE) Contest.
 #
-#
-# Author: Gemini AI
-# Date: 2025-10-04
-# Version: 0.90.8-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -17,19 +12,6 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-# --- Revision History ---
-# [0.90.8-Beta] - 2025-10-04
-# - Added cumulative QSO and QTC counts to the final diagnostic DataFrame
-#   to provide a more complete trace for debugging.
-# [0.90.7-Beta] - 2025-10-04
-# - Added diagnostic logging to print the entire final time-series DataFrame
-#   to assist in debugging score discrepancies.
-# [0.90.6-Beta] - 2025-10-04
-# - Added diagnostic logging to identify and report malformed QTC records
-#   that are dropped during timestamp parsing.
-# [0.90.5-Beta] - 2025-10-01
-# - Corrected scoring logic to derive the QSO count from the same filtered
-#   DataFrame as the multiplier count, ensuring alignment.
 
 import pandas as pd
 import numpy as np

@@ -5,10 +5,6 @@
 #          then uses the properties of each available report class to determine how to
 #          execute it (e.g., single-log, pairwise, multi-log).
 #
-# Author: Gemini AI
-# Date: 2026-01-07
-# Version: 0.166.0-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -18,37 +14,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0.
 # If a copy of the MPL was not distributed with this
-# file, You can obtain one at [http://mozilla.org/MPL/2.0/](http://mozilla.org/MPL/2.0/).
-#
-# --- Revision History ---
-# [0.166.0-Beta] - 2026-01-07
-# - Added performance profiling instrumentation when CLA_PROFILE=1.
-# [0.165.0-Beta] - 2026-01-07
-# - Fixed pairwise-only report bug: Changed line 217 condition from
-#   '(supports_multi or supports_pairwise)' to 'supports_multi' only.
-#   This prevents pairwise-only reports from receiving invalid all-logs instances.
-# [0.164.1-Beta] - 2026-01-05
-# - Added pairwise iteration loop for multiplier reports when > 2 logs are present.
-# [0.163.0-Beta] - 2026-01-05
-# - Enforced strict filename sanitization for callsign directory components to match report suffix logic.
-# [0.134.1-Beta] - 2025-12-20
-# - Removed redundant local 'import os' to fix NameError in nested helper.
-# [0.134.0-Beta] - 2025-12-20
-# - Integrated ManifestManager to track generated artifacts.
-# - Implemented directory snapshot logic to decouple report generation from file discovery.
-# [0.113.0-Beta] - 2025-12-13
-# - Enforced strict lowercase sanitization for all output directory paths (contest, event, callsigns).
-# [0.107.0-Beta] - 2025-12-13
-# - Removed 'html' output directory support to enforce semantic routing.
-# - Removed temporary debug logging and traceback imports.
-# [0.106.0-Beta] - 2025-12-13
-# - Added Systemic Directory Scaffolding (os.makedirs) to run_reports to prevent
-#   FileNotFoundError in dynamic session environments.
-# [0.91.1-Beta] - 2025-10-10
-# - Implemented hybrid "opt-in/opt-out" report model to handle
-#   specialized, contest-specific reports.
-# [0.90.0-Beta] - 2025-10-01
-# - Set new baseline version for release.
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import os
 import itertools

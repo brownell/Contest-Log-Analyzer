@@ -3,10 +3,6 @@
 # Purpose: A plot report that generates a comparative "butterfly" chart to
 #          visualize the band activity of two logs side-by-side using Plotly.
 #
-# Author: Gemini AI
-# Date: 2026-01-05
-# Version: 0.159.0-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -18,41 +14,6 @@
 # If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #
-# --- Revision History ---
-# [0.159.0-Beta] - 2026-01-05
-# - Disabled PNG generation logic (Kaleido dependency removal) for Web Architecture.
-# [0.151.1-Beta] - 2026-01-01
-# - Repair import path for report_utils to fix circular dependency.
-# [0.151.0-Beta] - 2026-01-01
-# - Refactored imports to use `contest_tools.utils.report_utils` to break circular dependency.
-# [0.133.1-Beta] - 2025-12-31
-# - Applied surgical butterfly alignment fix: injected barmode='overlay' into Plotly layout.
-# [0.133.0-Beta] - 2025-12-20
-# - Refactored `_generate_plot_for_slice` to use centralized `build_filename` utility.
-# - Standardized filename format to match other reports.
-# [0.131.0-Beta] - 2025-12-20
-# - Refactored to use `get_standard_title_lines` for standardized 3-line headers.
-# - Implemented explicit "Smart Scoping" for title generation.
-# - Added footer metadata via `get_cty_metadata`.
-# [0.118.0-Beta] - 2025-12-15
-# - Injected descriptive filename configuration for interactive HTML plot downloads.
-# [0.114.0-Beta] - 2025-12-14
-# - Updated HTML export to use responsive sizing (autosize=True) for dashboard integration.
-# - Maintained fixed resolution for PNG exports.
-# [0.113.0-Beta] - 2025-12-13
-# - Standardized filename generation: removed '_vs_' separator to match Web Dashboard conventions.
-# [1.1.2] - 2025-12-14
-# - Updated file generation to use `_sanitize_filename_part` for strict lowercase naming.
-# [1.1.1] - 2025-12-10
-# - Adjusted layout margins to fix overlap between Main Title and Subplot Title.
-# [1.1.0] - 2025-12-10
-# - Migrated visualization engine from Matplotlib to Plotly.
-# - Added dual output format (PNG + HTML).
-# - Implemented PlotlyStyleManager for consistent styling.
-# [1.0.0] - 2025-11-24
-# - Refactored to use MatrixAggregator (DAL).
-# [0.91.0-Beta] - 2025-10-11
-# - Initial creation of the correct "butterfly chart" implementation.
 import pandas as pd
 import numpy as np
 import plotly.graph_objects as go

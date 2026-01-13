@@ -1,7 +1,5 @@
 {
   "_filename": "contest_tools/contest_definitions/cq_wpx_cw.json",
-  "_version": "0.136.2-Beta",
-  "_date": "2025-12-22",
   "contest_name": "CQ-WPX-CW",
   "scoring_module": "cq_wpx_scoring",
   "mults_from_zero_point_qsos": true,

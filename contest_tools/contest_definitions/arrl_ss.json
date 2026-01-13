@@ -1,7 +1,5 @@
 {
   "_filename": "contest_tools/contest_definitions/arrl_ss.json",
-  "_version": "0.91.11-Beta",
-  "_date": "2025-10-10",
   "contest_name": "ARRL-SS",
   "scoring_module": "arrl_ss_scoring",
   "contest_period": {

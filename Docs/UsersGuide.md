@@ -225,8 +225,7 @@ Use the `Report ID` with the `--report` command-line option.
 * `html_qso_comparison`: HTML QSO Comparison Report
 
 #### **Chart Reports (`charts/`)**
-* `chart_point_contribution`: Point Contribution Breakdown
-* `chart_point_contribution_single`: Point Contribution Breakdown (Single Log)
+* `chart_point_contribution`: Point Contribution Breakdown (Single Log)
 * `qso_breakdown_chart`: QSO Breakdown Chart
 
 #### **Plot Reports (`plots/`)**

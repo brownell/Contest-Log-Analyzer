@@ -4,10 +4,6 @@
 #          summary.
 #          This version uses the `prettytable` library for formatting.
 #
-# Author: Gemini AI
-# Date: 2025-12-20
-# Version: 0.134.1-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -15,26 +11,8 @@
 #          (https://www.mozilla.org/MPL/2.0/)
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0.
-# If a copy of the MPL was not distributed with this
+# License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-#
-# --- Revision History ---
-# [0.134.1-Beta] - 2025-12-20
-# - Fixed logic error: ensured 'add_row' is called for every multiplier in the loop.
-# [0.134.0-Beta] - 2025-12-20
-# - Standardized report header to use `_report_utils`.
-# [0.113.0-Beta] - 2025-12-13
-# - Standardized filename generation: removed '_vs_' separator and applied strict sanitization to callsigns.
-# [0.93.1] - 2025-11-24
-# - Refactored to consume JSON-serializable types (Dicts/Lists) from
-#   MultiplierStatsAggregator, removing direct Pandas dependencies.
-# [0.93.1] - 2025-11-23
-# - Refactored to use MultiplierStatsAggregator for data processing.
-# [0.93.0-Beta] - 2025-11-23
-# - Fixed header generation to preserve "Countries" and "Prefixes" as plurals.
-# [0.90.0-Beta] - 2025-10-01
-# - Set new baseline version for release.
 
 from typing import List, Dict, Any, Set
 import os

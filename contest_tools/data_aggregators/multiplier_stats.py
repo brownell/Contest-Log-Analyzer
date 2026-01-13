@@ -3,10 +3,6 @@
 # Purpose: Centralizes the calculation logic for multiplier statistics,
 #          serving both the 'Multiplier Summary' and 'Missed Multipliers' reports.
 #
-# Author: Gemini AI
-# Date: 2026-01-01
-# Version: 0.149.1-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -14,30 +10,8 @@
 #          (https://www.mozilla.org/MPL/2.0/)
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0.
-# If a copy of the MPL was not distributed with this
+# License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-#
-# --- Revision History ---
-# [0.149.1-Beta] - 2026-01-01
-# - Updated import path for `determine_activity_status` to use new `utils` location
-#   to resolve circular dependency.
-# [0.149.0-Beta] - 2026-01-01
-# - Refactored to use centralized `determine_activity_status` utility.
-# - Standardized status label 'Both' to 'Mixed'.
-# [0.148.0-Beta] - 2025-12-30
-# - Fixed relative import for ComparativeEngine.
-# [0.146.0-Beta] - 2025-12-30
-# - Updated get_multiplier_breakdown_data to inject max_unique scaling factor into row data.
-# [0.144.0-Beta] - 2025-12-30
-# - Updated get_multiplier_breakdown_data to track Run/S&P status of unique multipliers.
-# - Updated build_row to return unique_run, unique_sp, unique_unk counts.
-# [0.125.3-Beta] - 2025-12-17
-# - Refactored build_row to return list of station stats instead of dict,
-#   ensuring ordered iteration in Django templates.
-# [0.127.1-Beta] - 2025-12-17
-# - Refactored get_multiplier_breakdown_data to return structured dictionary
-#   (totals/bands) instead of flat list, enabling responsive dashboard layout.
 # [0.127.0-Beta] - 2025-12-17
 # - Refactored get_dashboard_matrix_data to get_multiplier_breakdown_data.
 # - Implemented hierarchical aggregation (Total -> Band -> Rule) for dashboard.

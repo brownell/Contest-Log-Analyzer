@@ -1,7 +1,5 @@
 {
   "_filename": "contest_tools/contest_definitions/cq_160.json",
-  "_version": "0.91.11-Beta",
-  "_date": "2025-10-10",
   "contest_name": "CQ-160",
   "scoring_module": "cq_160_scoring",
   "contest_period": {

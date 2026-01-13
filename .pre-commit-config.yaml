@@ -1,0 +1,22 @@
+# .pre-commit-config.yaml
+#
+# Purpose: Pre-commit hooks configuration for Contest Log Analytics.
+#          Ensures code quality and version synchronization before commits.
+#
+# Copyright (c) 2025 Mark Bailey, KD4D
+# Contact: kd4d@kd4d.org
+#
+# License: Mozilla Public License, v. 2.0
+#          (https://www.mozilla.org/MPL/2.0/)
+
+repos:
+  # Update git hash in version.py before commit
+  - repo: local
+    hooks:
+      - id: update-version-hash
+        name: Update git hash in version.py
+        entry: python tools/update_version_hash.py
+        language: system
+        stages: [pre-commit]
+        always_run: true
+        pass_filenames: false

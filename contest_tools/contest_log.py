@@ -4,10 +4,6 @@
 #          and analysis of Cabrillo log data. It orchestrates the parsing,
 #          data cleaning, and calculation of various contest metrics.
 #
-# Author: Gemini AI
-# Date: 2026-01-07
-# Version: 0.160.0-Beta
-#
 # Copyright (c) 2025 Mark Bailey, KD4D
 # Contact: kd4d@kd4d.org
 #
@@ -17,43 +13,6 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-# --- Revision History ---
-# [0.160.0-Beta] - 2026-01-07
-# - Added performance profiling instrumentation when CLA_PROFILE=1.
-# [0.91.12-Beta] - 2025-10-10
-# - Fixed bug where the contest name from a file header would overwrite
-#   the authoritative name from a CLI override (e.g., --wrtc).
-# [0.91.11-Beta] - 2025-10-10
-# - Refactored scoring module loading to be configuration-based, using a
-#   new 'scoring_module' key in the JSON definition.
-# [0.91.10-Beta] - 2025-10-10
-# - Refactored multiplier resolver logic to use a single, unconditional
-#   4-argument call, removing the fragile hardcoded list.
-# [0.91.9-Beta] - 2025-10-09
-# - Corrected NAQP date calculation to use 0-indexed weeks for
-#   WeekOfMonth and removed diagnostic logging.
-# [0.91.8-Beta] - 2025-10-09
-# - Added diagnostic logging to the NAQP contest period filter to trace
-#   date/time calculation values.
-# [0.91.7-Beta] - 2025-10-09
-# - Fixed bug in NAQP contest period rule for August CW, changing the
-#   week from 1 (first Saturday) to 2 (second Saturday).
-# [0.91.6-Beta] - 2025-10-09
-# - Fixed TypeError in NAQP date filter by replacing the flawed Period
-#   conversion with a timezone-aware `replace()` method.
-# [0.91.5-Beta] - 2025-10-09
-# - Changed warning for empty hourly ADIF debug files to INFO level to
-#   reduce console noise.
-# [0.91.4-Beta] - 2025-10-09
-# - Fixed NAQP contest period bug by getting the mode from the log data
-#   instead of incorrectly parsing the contest name.
-# [0.90.3-Beta] - 2025-10-09
-# - Fixed ValueError in `_filter_by_contest_period` by replacing the
-#   incorrect `pd.to_datetime()` call for day names with a dictionary lookup.
-# [0.90.1-Beta] - 2025-10-03
-# - Added detailed diagnostic logging to _pre_calculate_time_series_score.
-# [0.90.0-Beta] - 2025-10-01
-# Set new baseline version for release.
 
 from typing import List
 import pandas as pd
