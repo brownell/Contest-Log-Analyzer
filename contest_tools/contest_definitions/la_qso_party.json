@@ -10,19 +10,19 @@
     "40M",
     "20M",
     "15M",
-    "10M"
+    "10M",
+    "6M",
+    "2M"
   ],
   "operating_time_rules": {
     "min_off_time_minutes": 30,
-    "single_op_max_hours": 10,
+    "single_op_max_hours": 12,
     "multi_op_max_hours": 12
   },
   "dupe_check_scope": "per_band",
   "score_formula": "qsos_times_mults",
-  "enable_adif_export": true,
-  "is_laqp_ruleset": true,
+  "enable_adif_export": false,
   "custom_multiplier_resolver": "laqp_multiplier_resolver",
-  "custom_adif_exporter": "laqp_adif",
   "time_series_calculator": "laqp_calculator",
   "excluded_reports": [
     "text_wae_score_report",

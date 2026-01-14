@@ -13,10 +13,7 @@
             "args": [
                 "--report",
                 "score_report", 
-                "aa0aw.log",
-                "aa0fo.log",
-                "aa2ad.log",
-                "aa3r.log"
+                "*.log"
                 
             ]
             }

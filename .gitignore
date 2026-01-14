@@ -31,3 +31,4 @@ test_code/exact_container.py
 !tools/setup_git_workflow.bat
 !tools/setup_git_workflow.ps1
 !tools/update_version_hash.py
+.vscode/launch.json
